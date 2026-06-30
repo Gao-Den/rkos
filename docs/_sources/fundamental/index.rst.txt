@@ -1,0 +1,16 @@
+Fundametal
+==================================================
+
+The **Fundamental** section introduces the core concepts of RK and RTOS, covering the task model, scheduling mechanisms, inter-task communication, synchronization, time management, and memory management.
+This foundational knowledge helps readers understand how RK operates before diving into specific APIs and features.
+
+.. toctree::
+   :maxdepth: 2
+
+   task
+   message
+   mailbox
+   event
+   mutex
+   timer
+   heap

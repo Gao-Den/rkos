@@ -1,0 +1,13 @@
+../../../sources/src/timer.c:51:6:timer_event_pool_init	8	static
+../../../sources/src/timer.c:73:16:timer_event_pool_get	8	static
+../../../sources/src/timer.c:100:6:timer_event_pool_free	8	static
+../../../sources/src/timer.c:436:6:timer_event_callback	8	static
+../../../sources/src/timer.c:116:16:timer_init	8	static
+../../../sources/src/timer.c:140:18:timer_create	24	static
+../../../sources/src/timer.c:168:16:timer_delete	16	static
+../../../sources/src/timer.c:207:6:timer_change_period	16	static
+../../../sources/src/timer.c:219:6:timer_start	8	static
+../../../sources/src/timer.c:231:6:timer_tick	24	static
+../../../sources/src/timer.c:260:6:timer_task	40	static
+../../../sources/src/timer.c:353:16:timer_set	48	static
+../../../sources/src/timer.c:397:16:timer_remove	32	static

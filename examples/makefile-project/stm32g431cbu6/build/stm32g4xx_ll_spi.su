@@ -1,0 +1,15 @@
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:381:26:LL_SPI_IsEnabled	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:774:22:LL_SPI_SetCRCPolynomial	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:1659:26:LL_I2S_IsEnabled	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1139:22:LL_APB1_GRP1_ForceReset	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1209:22:LL_APB1_GRP1_ReleaseReset	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1575:22:LL_APB2_GRP1_ReleaseReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1539:22:LL_APB2_GRP1_ForceReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_spi.h:665:22:LL_SPI_SetRxFIFOThreshold.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:133:13:LL_SPI_DeInit	8	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:200:13:LL_SPI_Init	16	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:278:6:LL_SPI_StructInit	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:382:13:LL_I2S_DeInit	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:397:13:LL_I2S_Init	24	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:504:6:LL_I2S_StructInit	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_spi.c:526:6:LL_I2S_ConfigPrescaler	0	static

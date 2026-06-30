@@ -1,0 +1,3 @@
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1209:22:LL_APB1_GRP1_ReleaseReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1139:22:LL_APB1_GRP1_ForceReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_pwr.c:55:13:LL_PWR_DeInit	8	static

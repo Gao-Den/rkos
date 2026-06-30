@@ -1,0 +1,22 @@
+/* docs/_static/custom.css */
+.wy-nav-content {
+    max-width: none;
+}
+
+.highlight {
+    /* background: #eef7d0; */
+    width: 100%;
+    border: 0px solid #ffffff;
+    border-radius: 4px;
+}
+
+.wy-side-nav-search .wy-dropdown > a img.logo,
+.wy-side-nav-search > a img.logo {
+    width: 75%;
+    height: auto;
+}
+
+.wy-side-nav-search > a,
+.wy-side-nav-search .icon-home {
+    color: #264653 !important;
+}

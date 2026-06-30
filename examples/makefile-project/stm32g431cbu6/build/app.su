@@ -1,0 +1,4 @@
+app.cpp:40:6:void task_a()	8	static
+app.cpp:49:6:void task_b()	8	static
+app.cpp:58:6:void task_c()	8	static
+app.cpp:24:6:void app()	24	static

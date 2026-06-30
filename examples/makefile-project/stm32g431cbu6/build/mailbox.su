@@ -1,0 +1,5 @@
+../../../sources/src/mailbox.c:34:18:mailbox_create	32	static
+../../../sources/src/mailbox.c:82:18:mailbox_delete	8	static
+../../../sources/src/mailbox.c:127:18:mailbox_send	24	static
+../../../sources/src/mailbox.c:197:18:mailbox_receive	24	static
+../../../sources/src/mailbox.c:264:6:mailbox_tick	24	static

@@ -1,0 +1,25 @@
+Timer
+========================================
+
+Timer service provides software timers and timer events for deferred execution,
+periodic processing and asynchronous task notification.
+
+Timer Service
+----------------------------------------
+
+.. doxygenfunction:: timer_create
+.. doxygenfunction:: timer_start
+.. doxygenfunction:: timer_delete
+.. doxygenfunction:: timer_change_period
+
+Kernel Service
+----------------------------------------
+
+.. doxygenfunction:: timer_tick
+.. doxygenfunction:: timer_task
+
+Timer Event
+----------------------------------------
+
+.. doxygenfunction:: timer_set
+.. doxygenfunction:: timer_remove

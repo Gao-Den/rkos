@@ -1,0 +1,14 @@
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:659:26:LL_USART_IsEnabled	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:1225:22:LL_USART_SetPrescaler	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:1305:22:LL_USART_SetStopBitsLength	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:1730:22:LL_USART_SetHWFlowCtrl	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_usart.h:1881:22:LL_USART_SetBaudRate	12	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1139:22:LL_APB1_GRP1_ForceReset	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1209:22:LL_APB1_GRP1_ReleaseReset	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1575:22:LL_APB2_GRP1_ReleaseReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Inc/stm32g4xx_ll_bus.h:1539:22:LL_APB2_GRP1_ForceReset.constprop	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c:139:13:LL_USART_DeInit	8	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c:214:13:LL_USART_Init	24	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c:332:6:LL_USART_StructInit	0	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c:359:13:LL_USART_ClockInit	16	static
+./sdk/STM32G4xx_HAL_Driver/Src/stm32g4xx_ll_usart.c:406:6:LL_USART_ClockStructInit	0	static

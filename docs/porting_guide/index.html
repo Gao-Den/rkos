@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Porting Guide &mdash; RKOS Doucmentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="About" href="../about.html" />
+    <link rel="prev" title="Heap" href="../api/heap.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #edf2f4" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            RKOS Doucmentation
+              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fundamental/index.html">Fundametal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API References</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Porting Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#adding-rk-source-code-to-your-project">1. Adding RK Source Code to Your Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#porting-hardware-dependent-functions">2. Porting Hardware-Dependent Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#connecting-to-the-interrupt-system">3. Connecting to the Interrupt System</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#system-tick">System Tick</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pendsv">PendSV</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#initialization-and-starting-rk">4. Initialization and Starting RK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">5. Example</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#demonstration">Demonstration:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #edf2f4" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RKOS Doucmentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Porting Guide</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="porting-guide">
+<h1>Porting Guide<a class="headerlink" href="#porting-guide" title="Link to this heading"></a></h1>
+<p>Porting RK to a new project is relatively straightforward. Users only need to provide a few hardware-dependent functions and hook RK into the existing interrupt system.</p>
+<p>The porting process consists of the following steps:</p>
+<section id="adding-rk-source-code-to-your-project">
+<h2>1. Adding RK Source Code to Your Project<a class="headerlink" href="#adding-rk-source-code-to-your-project" title="Link to this heading"></a></h2>
+<p>Download the RK source code and add it to your current project.</p>
+<p>The directory structure can be organized as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Project
+├── application/
+├── drivers/
+├── rk/
+├── ...
+</pre></div>
+</div>
+<p>Ensure that the include paths are properly configured in your IDE or build system so the project can access the RK header files.</p>
+</section>
+<section id="porting-hardware-dependent-functions">
+<h2>2. Porting Hardware-Dependent Functions<a class="headerlink" href="#porting-hardware-dependent-functions" title="Link to this heading"></a></h2>
+<p>Create a <strong>rk_port.h</strong> file with the following template content:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#ifndef __RK_PORT_H__</span>
+<span class="cp">#define __RK_PORT_H__</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sys_ctrl.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sys_irq.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xprintf.h&quot;</span>
+
+<span class="cp">#define port_entry_critical()               ENTRY_CRITICAL()</span>
+<span class="cp">#define port_exit_critical()                EXIT_CRITICAL()</span>
+
+<span class="cp">#define port_os_printf(fmt, ...)            xprintf(fmt, ##__VA_ARGS__)</span>
+<span class="cp">#define port_os_pendsv_trigger()            pendsv_trigger()</span>
+
+<span class="cp">#define port_fatal_error(c, m)              SYS_FATAL(c, m)</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif </span><span class="cm">/* __RK_PORT_H__ */</span>
+</pre></div>
+</div>
+<p>Users need to map the macros above to their existing system APIs.</p>
+<p>Note: <em>port_os_pendsv_trigger()</em> must be implemented to trigger the microcontroller’s PendSV interrupt. This is the exact mechanism RK relies on to perform asynchronous context switching.</p>
+</section>
+<section id="connecting-to-the-interrupt-system">
+<h2>3. Connecting to the Interrupt System<a class="headerlink" href="#connecting-to-the-interrupt-system" title="Link to this heading"></a></h2>
+<p>RK needs to be integrated into two core system interrupts:</p>
+<section id="system-tick">
+<h3>System Tick<a class="headerlink" href="#system-tick" title="Link to this heading"></a></h3>
+<p>Inside the SysTick interrupt service routine (ISR), call the RK tick handler function.</p>
+<p>Example code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">system_tick_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* system milisenconds increase */</span>
+<span class="w">    </span><span class="p">...</span>
+
+<span class="w">    </span><span class="cm">/* task os scheduler */</span>
+<span class="w">    </span><span class="n">task_os_tick</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This function is responsible for:</p>
+<ul class="simple">
+<li><p>Updating the global system tick count.</p></li>
+<li><p>Managing task delay periods.</p></li>
+<li><p>Advancing software software timers.</p></li>
+<li><p>Waking up tasks whose waiting time has expired (timeouts).</p></li>
+<li><p>Triggering the scheduler when a context switch is required.</p></li>
+</ul>
+<p>The argument passed into the <em>task_os_tick(1)</em> function depends entirely on the configured system tick frequency (heartbeat period), which typically ranges from 1ms to 10ms in standard RTOS applications.</p>
+</section>
+<section id="pendsv">
+<h3>PendSV<a class="headerlink" href="#pendsv" title="Link to this heading"></a></h3>
+<p>Inside the PendSV interrupt service routine, invoke the RK Context Switch handler.</p>
+<p>Example code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">pendsv_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">task_os_pendsv_handler</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="initialization-and-starting-rk">
+<h2>4. Initialization and Starting RK<a class="headerlink" href="#initialization-and-starting-rk" title="Link to this heading"></a></h2>
+<p>Once the porting layer is complete, proceed to initialize and launch the system components within your main execution path.</p>
+<p>Example code:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* startup code */</span>
+<span class="p">...</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* system init */</span>
+<span class="w">    </span><span class="n">system_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="cm">/* periperal init */</span>
+<span class="w">    </span><span class="n">uart_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">i2c_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">gpio_init</span><span class="p">();</span>
+
+<span class="w">    </span><span class="cm">/* task os init */</span>
+<span class="w">    </span><span class="n">task_os_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">task_os_create</span><span class="p">(</span><span class="n">TASK_SAMPLE_ID</span><span class="p">,</span><span class="w"> </span><span class="n">task_sample_handler</span><span class="p">,</span><span class="w"> </span><span class="n">TASK_PRIORITY_2</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="n">MAILBOX_NULL</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="s">&quot;task_sample&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">task_os_run</span><span class="p">();</span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Where:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 75.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>task_os_init()</p></td>
+<td><p>Prepares system memory, ready queues, and internal kernel configurations before any tasks can be created.</p></td>
+</tr>
+<tr class="row-odd"><td><p>task_os_create()</p></td>
+<td><p>Allocates task stack space, assigns the priority level, and registers the task into the scheduler’s management list.</p></td>
+</tr>
+<tr class="row-even"><td><p>task_os_run()</p></td>
+<td><p>Hands over CPU control to the highest-priority ready task, officially starting multitasking execution.</p></td>
+</tr>
+</tbody>
+</table>
+<p>After task_os_run() is successfully called, the CPU execution will be fully managed by the scheduler, and tasks will execute according to RK’s scheduling rules.
+Following these four steps, RK is successfully ported into your project and ready for use. You can now begin creating Tasks, Timers, Mailboxes, Mutexes, and other RK objects to power your application.</p>
+</section>
+<section id="example">
+<h2>5. Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>Example for porting:</p>
+<ul class="simple">
+<li><p>STM32F103C8T6 (Standard Library): <a class="reference external" href="https://github.com/Gao-Den/rkos/examples/makefile-project/stm32f103c8t6">https://github.com/Gao-Den/rkos/examples/makefile-project/stm32f103c8t6</a></p></li>
+<li><p>STM32G431CBU6 (HAL/LL Library): <a class="reference external" href="https://github.com/Gao-Den/rkos/examples/makefile-project/stm32g431cbu6">https://github.com/Gao-Den/rkos/examples/makefile-project/stm32g431cbu6</a></p></li>
+</ul>
+<section id="demonstration">
+<h3>Demonstration:<a class="headerlink" href="#demonstration" title="Link to this heading"></a></h3>
+<video width="100%" controls>
+     <source src="../_static/stm32g431-led-blink.mp4" type="video/mp4">
+</video></section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../api/heap.html" class="btn btn-neutral float-left" title="Heap" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../about.html" class="btn btn-neutral float-right" title="About" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

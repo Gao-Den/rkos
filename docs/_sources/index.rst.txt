@@ -1,0 +1,27 @@
+########################
+RKOS Documentation
+########################
+
+.. image:: _static/rk-logo-social-color-non-bg.png
+   :width: 30%
+   :alt: RKOS Logo
+
+Welcome to the official documentation of RK (Realtime Kernel), a real-time operating system (RTOS) for microcontrollers developed by Vietnamese developers.
+
+RK is based on a preemptive RTOS architecture. and integrates the event-driven programming model to provide efficient, responsive, and scalable task management for embedded systems.
+
+This documentation covers the following topics:
+
+- Introduction
+- Fundamental Concepts
+- API Reference
+- Porting Guide
+
+.. toctree::
+   :hidden:
+
+   introduction
+   fundamental/index
+   api/index
+   porting_guide/index
+   about

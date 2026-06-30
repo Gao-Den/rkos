@@ -1,0 +1,25 @@
+About
+========================================
+
+.. image:: _static/rk-logo-social-color-non-bg.png
+   :width: 20%
+   :alt: RKOS Logo
+
+RK is a preemptive RTOS designed to bridge the gap between operating system theory and real-world application. By providing a clean, accessible architecture, it strips away the complexity of traditional kernels to inspire and empower the embedded systems community. 
+
+Whether you are learning or building, RK is your transparent blueprint for efficient.
+
+Author
+--------------------------------------------------
+Author information:
+
+- Author: GaoDen
+- Github: https://github.com/Gao-Den
+- Linkedin: https://www.linkedin.com/in/ngo-thanh-nha-10627b322
+- Email: ngothanhnha.work@gmail.com
+
+Feedback
+--------------------------------------------------
+If you detect any errors in the documentation or have suggestions for improvements, please feel free to reach out to the author or open an Issue on the project repository.
+
+Thank you for choosing and using RK!

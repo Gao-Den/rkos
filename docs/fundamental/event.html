@@ -1,0 +1,167 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event - Driven &mdash; RKOS Doucmentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Mutex" href="mutex.html" />
+    <link rel="prev" title="Mailbox" href="mailbox.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #edf2f4" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            RKOS Doucmentation
+              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Fundametal</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="task.html">Task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailbox.html">Mailbox</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Event - Driven</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bare-metal-project">Bare-metal Project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rtos">RTOS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="mutex.html">Mutex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heap.html">Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../porting_guide/index.html">Porting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #edf2f4" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RKOS Doucmentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fundametal</a></li>
+      <li class="breadcrumb-item active">Event - Driven</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="event-driven">
+<h1>Event - Driven<a class="headerlink" href="#event-driven" title="Link to this heading"></a></h1>
+<p>RK integrates a built-in inter-task communication system based on the <strong>Event-Driven</strong> model.</p>
+<p>Instead of tasks constantly polling each other’s status or checking shared variables, each task communicates by sending and receiving messages. When an event occurs, a message is generated and sent to the destination task to request the execution of the corresponding operation.</p>
+<p>This model provides several key benefits:</p>
+<ul class="simple">
+<li><p>Reduces dependency (coupling) between tasks.</p></li>
+<li><p>Eliminates continuous polling mechanisms, preventing CPU resource waste.</p></li>
+<li><p>Makes the system easy to scale and maintain.</p></li>
+<li><p>Improves the responsiveness of the application.</p></li>
+</ul>
+<p>The Event-Driven model in RK is heavily based on the concepts of the <strong>Active Object</strong> model (<a class="reference external" href="https://www.state-machine.com/active-object">https://www.state-machine.com/active-object</a>).</p>
+<a class="reference internal image-reference" href="../_images/actve-object.svg"><img alt="../_images/actve-object.svg" src="../_images/actve-object.svg" style="width: 30%;" />
+</a>
+<p>Each task (thread) possesses its own dedicated storage space for its local events, states, and data—remaining completely isolated and independent from other tasks in the system.</p>
+<p>The Event-Driven system in RK is a unified synergy of three core components:</p>
+<ul class="simple">
+<li><p>Task</p></li>
+<li><p>Mailbox</p></li>
+<li><p>Message</p></li>
+</ul>
+<p>The Event system consists of two primary mechanisms:</p>
+<ul class="simple">
+<li><p><strong>Event Bus:</strong> The intermediary layer responsible for publishing and receiving messages (messages originating from ISRs or other tasks).</p></li>
+<li><p><strong>Event Loop:</strong> The processing engine that dispatches incoming messages to their respective destination handlers.</p></li>
+</ul>
+<section id="bare-metal-project">
+<h2>Bare-metal Project<a class="headerlink" href="#bare-metal-project" title="Link to this heading"></a></h2>
+<p>In a pure super loop system, it is entirely possible to implement an event-driven architecture as follows:</p>
+<a class="reference internal image-reference" href="../_images/event-driven-bare.svg"><img alt="../_images/event-driven-bare.svg" src="../_images/event-driven-bare.svg" style="width: 50%;" />
+</a>
+<p>All messages are centrally aggregated and stored in a shared global <strong>Event Queue</strong>. The centralized <strong>Event Loop</strong> continuously extracts messages from this queue and dispatches them to the target task. Each destination task then processes the event based on the specific event ID it has been assigned.</p>
+</section>
+<section id="rtos">
+<h2>RTOS<a class="headerlink" href="#rtos" title="Link to this heading"></a></h2>
+<p>Within an RTOS environment, the Event-Driven architecture still adheres to the core concepts mentioned above:</p>
+<a class="reference internal image-reference" href="../_images/event-driven-rtos.svg"><img alt="../_images/event-driven-rtos.svg" src="../_images/event-driven-rtos.svg" style="width: 55%;" />
+</a>
+<p>However, the key distinction lies in isolation: each task maintains its own independent Event Queue and Event Loop.</p>
+<p>Every single object (Queue, Event Loop, Message) is instantiated and managed within the dedicated, isolated memory space allocated to that specific task.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mailbox.html" class="btn btn-neutral float-left" title="Mailbox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mutex.html" class="btn btn-neutral float-right" title="Mutex" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

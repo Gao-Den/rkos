@@ -1,0 +1,16 @@
+Mutex
+========================================
+
+Mutex service provides mutual exclusion and task synchronization. It supports
+recursive locking and priority inheritance to prevent priority inversion.
+
+Mutex Management
+----------------------------------------
+
+.. doxygenfunction:: mutex_init
+
+Mutex Operations
+----------------------------------------
+
+.. doxygenfunction:: mutex_lock
+.. doxygenfunction:: mutex_unlock

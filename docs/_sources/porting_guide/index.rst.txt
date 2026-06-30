@@ -1,0 +1,169 @@
+Porting Guide
+========================================
+Porting RK to a new project is relatively straightforward. Users only need to provide a few hardware-dependent functions and hook RK into the existing interrupt system.
+
+The porting process consists of the following steps:
+
+1. Adding RK Source Code to Your Project
+--------------------------------------------------
+Download the RK source code and add it to your current project.
+
+The directory structure can be organized as follows:
+
+.. code-block::
+
+    Project
+    ├── application/
+    ├── drivers/
+    ├── rk/
+    ├── ...
+
+Ensure that the include paths are properly configured in your IDE or build system so the project can access the RK header files.
+
+2. Porting Hardware-Dependent Functions
+--------------------------------------------------
+Create a **rk_port.h** file with the following template content:
+
+.. code-block:: c
+
+    #ifndef __RK_PORT_H__
+    #define __RK_PORT_H__
+
+    #ifdef __cplusplus
+    extern "C" {
+    #endif
+
+    #include <stdio.h>
+    #include <stdint.h>
+    #include <stdlib.h>
+    #include <string.h>
+
+    #include "sys_ctrl.h"
+    #include "sys_irq.h"
+    #include "xprintf.h"
+
+    #define port_entry_critical()               ENTRY_CRITICAL()
+    #define port_exit_critical()                EXIT_CRITICAL()
+
+    #define port_os_printf(fmt, ...)            xprintf(fmt, ##__VA_ARGS__)
+    #define port_os_pendsv_trigger()            pendsv_trigger()
+
+    #define port_fatal_error(c, m)              SYS_FATAL(c, m)
+
+    #ifdef __cplusplus
+    }
+    #endif
+
+    #endif /* __RK_PORT_H__ */
+
+Users need to map the macros above to their existing system APIs.
+
+Note: *port_os_pendsv_trigger()* must be implemented to trigger the microcontroller's PendSV interrupt. This is the exact mechanism RK relies on to perform asynchronous context switching.
+
+3. Connecting to the Interrupt System
+--------------------------------------------------
+RK needs to be integrated into two core system interrupts:
+
+System Tick
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inside the SysTick interrupt service routine (ISR), call the RK tick handler function.
+
+Example code:
+
+.. code-block:: c
+
+    void system_tick_handler() {
+        /* system milisenconds increase */
+        ...
+
+        /* task os scheduler */
+        task_os_tick(1);
+    }
+
+This function is responsible for:
+
+- Updating the global system tick count.
+- Managing task delay periods.
+- Advancing software software timers.
+- Waking up tasks whose waiting time has expired (timeouts).
+- Triggering the scheduler when a context switch is required.
+
+The argument passed into the *task_os_tick(1)* function depends entirely on the configured system tick frequency (heartbeat period), which typically ranges from 1ms to 10ms in standard RTOS applications.
+
+PendSV
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Inside the PendSV interrupt service routine, invoke the RK Context Switch handler.
+
+Example code:
+
+.. code-block:: c
+
+    void pendsv_handler() {
+        task_os_pendsv_handler();
+    }
+
+
+4. Initialization and Starting RK
+--------------------------------------------------
+Once the porting layer is complete, proceed to initialize and launch the system components within your main execution path.
+
+Example code:
+
+.. code-block:: c
+
+    /* startup code */
+    ...
+
+    void main() {
+        /* system init */
+        system_init();
+
+        /* periperal init */
+        uart_init();
+        i2c_init();
+        gpio_init();
+
+        /* task os init */
+        task_os_init();
+        task_os_create(TASK_SAMPLE_ID, task_sample_handler, TASK_PRIORITY_2, 1024, MAILBOX_NULL, 0, (const uint8_t*)"task_sample");
+        task_os_run();
+
+        while (1) {
+        }
+    }
+
+Where:
+
+.. list-table::
+   :widths: 40 120
+   :header-rows: 1
+
+   * - Function
+     - Description
+   * - task_os_init()
+     - Prepares system memory, ready queues, and internal kernel configurations before any tasks can be created.
+   * - task_os_create()
+     - Allocates task stack space, assigns the priority level, and registers the task into the scheduler's management list.
+   * - task_os_run()
+     - Hands over CPU control to the highest-priority ready task, officially starting multitasking execution.
+
+After task_os_run() is successfully called, the CPU execution will be fully managed by the scheduler, and tasks will execute according to RK's scheduling rules.
+Following these four steps, RK is successfully ported into your project and ready for use. You can now begin creating Tasks, Timers, Mailboxes, Mutexes, and other RK objects to power your application.
+
+5. Example
+--------------------------------------------------
+Example for porting:
+
+- STM32F103C8T6 (Standard Library): https://github.com/Gao-Den/rkos/examples/makefile-project/stm32f103c8t6
+- STM32G431CBU6 (HAL/LL Library): https://github.com/Gao-Den/rkos/examples/makefile-project/stm32g431cbu6
+
+Demonstration:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+   <video width="100%" controls>
+        <source src="../_static/stm32g431-led-blink.mp4" type="video/mp4">
+   </video>

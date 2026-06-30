@@ -1,0 +1,38 @@
+Message
+========================================
+
+Message package management provides memory pool allocation and APIs for creating,
+accessing and releasing pure, common and dynamic messages used for inter-task
+communication.
+
+Initialization
+----------------------------------------
+
+.. doxygenfunction:: msg_init
+
+Message memory management
+----------------------------------------
+
+.. doxygenfunction:: free_msg
+
+Pure message
+----------------------------------------
+
+.. doxygenfunction:: get_pure_msg
+.. doxygenfunction:: get_pure_msg_free
+
+Common message
+----------------------------------------
+
+.. doxygenfunction:: get_common_msg
+.. doxygenfunction:: set_data_common_msg
+.. doxygenfunction:: get_data_common_msg
+.. doxygenfunction:: get_common_msg_free
+
+Dynamic message
+----------------------------------------
+
+.. doxygenfunction:: get_dynamic_msg
+.. doxygenfunction:: set_data_dynamic_msg
+.. doxygenfunction:: get_data_dynamic_msg
+.. doxygenfunction:: get_dynamic_msg_free

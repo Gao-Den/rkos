@@ -1,0 +1,23 @@
+Mailbox
+========================================
+
+Mailbox service provides synchronized communication between tasks using a
+fixed-size FIFO queue. It supports blocking and timeout operations for both
+sending and receiving data.
+
+Mailbox Management
+----------------------------------------
+
+.. doxygenfunction:: mailbox_create
+.. doxygenfunction:: mailbox_delete
+
+Mailbox Operations
+----------------------------------------
+
+.. doxygenfunction:: mailbox_send
+.. doxygenfunction:: mailbox_receive
+
+Kernel Service
+----------------------------------------
+
+.. doxygenfunction:: mailbox_tick

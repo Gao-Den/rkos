@@ -1,0 +1,14 @@
+# ignore build output
+/build/
+
+# ignore VSCode settings
+.vscode/
+
+# ignore Doxygen output
+Doxyfile
+
+# ignore documentation resources
+documentation
+
+# Makefile (auto-docs)
+Makefile

@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task &mdash; RKOS Doucmentation 1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=f2a433a1"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Message" href="message.html" />
+    <link rel="prev" title="Fundametal" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #edf2f4" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            RKOS Doucmentation
+              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Fundametal</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Task</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#super-loop-model">Super Loop Model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#context-switching-concept">Context Switching Concept</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#task-priority">Task priority</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="message.html">Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mailbox.html">Mailbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event.html">Event - Driven</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mutex.html">Mutex</a></li>
+<li class="toctree-l2"><a class="reference internal" href="timer.html">Timer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="heap.html">Heap</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../porting_guide/index.html">Porting Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #edf2f4" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">RKOS Doucmentation</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Fundametal</a></li>
+      <li class="breadcrumb-item active">Task</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="task">
+<h1>Task<a class="headerlink" href="#task" title="Link to this heading"></a></h1>
+<section id="super-loop-model">
+<h2>Super Loop Model<a class="headerlink" href="#super-loop-model" title="Link to this heading"></a></h2>
+<p>First, let’s take a look at how a typical embedded software program works.</p>
+<p>After the microcontroller is powered on or reset, the program goes through the following steps:</p>
+<ul class="simple">
+<li><p>Memory initialization (Startup code)</p></li>
+<li><p>Hardware initialization: Clock, GPIO, UART, SPI, etc.</p></li>
+<li><p>Application initialization</p></li>
+<li><p>Entering an infinite loop (Super loop)</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* startup code */</span>
+<span class="p">...</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="cm">/* system init */</span>
+<span class="w">   </span><span class="n">system_init</span><span class="p">();</span>
+
+<span class="w">   </span><span class="cm">/* periperal init */</span>
+<span class="w">   </span><span class="n">uart_init</span><span class="p">();</span>
+<span class="w">   </span><span class="n">i2c_init</span><span class="p">();</span>
+<span class="w">   </span><span class="n">gpio_init</span><span class="p">();</span>
+
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="cm">/* reading sensor */</span>
+<span class="w">      </span><span class="p">...</span>
+
+<span class="w">      </span><span class="cm">/* button pressed */</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This infinite loop is commonly referred to as a <strong>super loop</strong>. The entire user application will be executed sequentially inside this loop.</p>
+<p>For small applications, this method works very efficiently:</p>
+<ul class="simple">
+<li><p>Easy to understand</p></li>
+<li><p>Easy to implement</p></li>
+<li><p>No additional RAM overhead</p></li>
+<li><p>No complex task management mechanism required</p></li>
+</ul>
+<a class="reference internal image-reference" href="../_images/super-loop.svg"><img alt="../_images/super-loop.svg" src="../_images/super-loop.svg" style="width: 40%;" />
+</a>
+<p>However, as the system grows larger, several issues begin to surface.
+Subsequent tasks must wait entirely for the preceding task to finish executing. This leads to:</p>
+<ul class="simple">
+<li><p>High response latency</p></li>
+<li><p>Difficulty in guaranteeing real-time performance</p></li>
+<li><p>Delayed processing of critical tasks</p></li>
+<li><p>Source code becoming increasingly difficult to maintain</p></li>
+</ul>
+<p>Particularly for tasks that require strict delay constraints, processing becomes even slower.
+Instead of placing the entire program into a single loop, an RTOS divides the application into multiple independent execution blocks called Tasks.
+For example:</p>
+<ul class="simple">
+<li><p>Sensor reading task</p></li>
+<li><p>UART communication task</p></li>
+<li><p>Display control task</p></li>
+<li><p>Data processing task</p></li>
+</ul>
+<p>Each task possesses its own:</p>
+<ul class="simple">
+<li><p>Execution function</p></li>
+<li><p>Stack memory</p></li>
+<li><p>Priority level</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">task_sensor_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">read_sensor</span><span class="p">();</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">task_console_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">serial_polling_console</span><span class="p">();</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">task_display_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">   </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">lcd</span><span class="p">.</span><span class="n">update</span><span class="p">();</span>
+<span class="w">   </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="context-switching-concept">
+<h2>Context Switching Concept<a class="headerlink" href="#context-switching-concept" title="Link to this heading"></a></h2>
+<p>To transition the CPU from one task to another, an RTOS utilizes a mechanism called Context Switching. Since only one task can run at any given moment, this operation is commonly referred to as <strong>multitasking virtualization</strong>.</p>
+<p>The context represents the entire state of the CPU at the exact moment the task is executing.</p>
+<a class="reference internal image-reference" href="../_images/context-switch.svg"><img alt="../_images/context-switch.svg" class="align-center" src="../_images/context-switch.svg" style="width: 80%;" />
+</a>
+<p>When the RTOS decides to switch from the currently running task to another task, the process unfolds as follows:</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: Save the entire execution state of the currently running task into its own private memory (typically that task’s stack).</p></li>
+<li><p><strong>Step 2</strong>: Reloads the previously saved state of the next task, allowing the CPU to resume execution from the exact point where it left off.</p></li>
+<li><p><strong>Step 3</strong>: The CPU continues executing the new task as if it had never been interrupted.</p></li>
+</ul>
+</section>
+<section id="task-priority">
+<h2>Task priority<a class="headerlink" href="#task-priority" title="Link to this heading"></a></h2>
+<section id="task-states">
+<h3>Task states<a class="headerlink" href="#task-states" title="Link to this heading"></a></h3>
+<a class="reference internal image-reference" href="../_images/task-states.svg"><img alt="../_images/task-states.svg" src="../_images/task-states.svg" style="width: 40%;" />
+</a>
+<p>Above are the 4 states of a task:</p>
+<ul class="simple">
+<li><p><strong>Running</strong>: The task is currently executing.</p></li>
+<li><p><strong>Ready</strong>: The task is waiting and prepared to be scheduled for execution.</p></li>
+<li><p><strong>Blocked</strong>: The task is temporarily suspended by application operations (e.g., Task delay, waiting for a mailbox, waiting for a mutex).</p></li>
+<li><p><strong>Suspended</strong>: The task is explicitly requested to be paused and is excluded from context switching operations.</p></li>
+</ul>
+</section>
+<section id="priority-based">
+<h3>Priority-based<a class="headerlink" href="#priority-based" title="Link to this heading"></a></h3>
+<p>During the context switching process, the Scheduler decides which task will run next. Similar to other RTOS frameworks, RK utilizes the following two mechanisms:</p>
+<ul class="simple">
+<li><p><strong>Priority-based</strong>: Context switching based on the priority level among tasks.</p></li>
+<li><p><strong>Round-Robin</strong>: Rotational context switching.</p></li>
+</ul>
+<p>RK utilizes a bitmask mechanism to rapidly determine the highest priority task that is eligible to run next.</p>
+<a class="reference internal image-reference" href="../_images/task-priority-based.svg"><img alt="../_images/task-priority-based.svg" src="../_images/task-priority-based.svg" style="width: 50%;" />
+</a>
+<p>As illustrated above, each priority level is associated with a corresponding task queue for that specific priority. This queue is structured using a singly linked list.</p>
+<p>The scheduling operation proceeds as follows:</p>
+<ul class="simple">
+<li><p><strong>Step 1</strong>: The Scheduler identifies the highest priority task by checking which priority bit is set (enabled).</p></li>
+<li><p><strong>Step 2</strong>: It pops a task from this specific queue (to allow it to run).</p></li>
+<li><p><strong>Step 3</strong>: It moves this task to the end of the queue for that same priority level.</p></li>
+</ul>
+</section>
+<section id="round-robin">
+<h3>Round-robin<a class="headerlink" href="#round-robin" title="Link to this heading"></a></h3>
+<a class="reference internal image-reference" href="../_images/task-round-robin.svg"><img alt="../_images/task-round-robin.svg" src="../_images/task-round-robin.svg" style="width: 50%;" />
+</a>
+<p>Within the same priority level of a task list, tasks will rotate their execution based on the time slices of the RTOS tick (Heartbeat tick).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Fundametal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="message.html" class="btn btn-neutral float-right" title="Message" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+Introduction
+========================================
+
+RK is a preemptive real-time operating system (RTOS) developed for learning & educational purposes. It is designed with simplicity, cleanliness, ease of use, and portability in mind.
+
+Beyond that, it seeks to inspire and fuel a passion for product development within the embedded community.
+
+Key Features
+----------------------------------------
+- Supports most essential RTOS services: Tasks, Messages, Mailboxes, Mutexes, and Timer service.
+- Provides an integrated Event-Driven Programming framework, task communication through the Task & Signal mechanism.
+- Support for timer events (part of the Timer service): Support for time-based event pumps.
+- System monitoring utilities: Task stack usage analysis, CPU workload.
+
+Resouces
+----------------------------------------
+RK Open-source: https://github.com/Gao-Den/rkos
+
+Supported Architecture
+----------------------------------------
+
+.. list-table::
+   :widths: 30 40
+   :header-rows: 1
+
+   * - Architecture
+     - Compatibility
+   * - ARM Cortex-M4
+     - Stable
+   * - ARM Cortex-M3
+     - Beta

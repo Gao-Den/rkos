@@ -1,0 +1,4 @@
+../../../sources/src/heap.c:37:6:heap_init	0	static
+../../../sources/src/heap.c:71:7:heap_malloc	24	static
+../../../sources/src/heap.c:156:6:heap_free	8	static
+../../../sources/src/heap.c:200:6:heap_info	32	static

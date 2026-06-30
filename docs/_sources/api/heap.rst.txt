@@ -1,0 +1,22 @@
+Heap
+========================================
+
+Heap service provides dynamic memory allocation and deallocation for the kernel
+and user applications. It also provides heap usage statistics for debugging and
+memory analysis.
+
+Initialization
+----------------------------------------
+
+.. doxygenfunction:: heap_init
+
+Memory Management
+----------------------------------------
+
+.. doxygenfunction:: heap_malloc
+.. doxygenfunction:: heap_free
+
+Heap Information
+----------------------------------------
+
+.. doxygenfunction:: heap_info

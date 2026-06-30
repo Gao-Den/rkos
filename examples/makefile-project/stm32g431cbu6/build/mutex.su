@@ -1,0 +1,3 @@
+../../../sources/src/mutex.c:24:6:mutex_init	8	static
+../../../sources/src/mutex.c:40:16:mutex_lock	16	static
+../../../sources/src/mutex.c:93:16:mutex_unlock	16	static

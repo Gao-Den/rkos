@@ -1,0 +1,53 @@
+Task
+========================================
+
+Operating System task management, scheduling, synchronization and inter-task
+communication services.
+
+Task management
+----------------------------------------
+
+.. doxygenfunction:: task_os_init
+.. doxygenfunction:: task_os_create
+.. doxygenfunction:: task_os_create_table
+.. doxygenfunction:: task_os_delete
+.. doxygenfunction:: task_os_suspend
+.. doxygenfunction:: task_os_resume
+.. doxygenfunction:: task_os_run
+.. doxygenfunction:: task_os_tick
+.. doxygenfunction:: task_os_scheduler
+.. doxygenfunction:: task_os_pendsv_handler
+
+Task message transport
+----------------------------------------
+
+.. doxygenfunction:: task_post
+.. doxygenfunction:: task_post_pure_msg
+.. doxygenfunction:: task_post_common_msg
+.. doxygenfunction:: task_post_dynamic_msg
+.. doxygenfunction:: task_receive_msg
+.. doxygenfunction:: task_free_msg
+
+Task information
+----------------------------------------
+
+.. doxygenfunction:: task_info
+.. doxygenfunction:: task_os_get_current_tcb
+.. doxygenfunction:: task_os_delay
+
+Task list
+----------------------------------------
+
+.. doxygenfunction:: task_list_init
+.. doxygenfunction:: task_list_put
+.. doxygenfunction:: task_list_remove
+.. doxygenfunction:: task_list_get
+.. doxygenfunction:: task_list_get_head
+.. doxygenfunction:: task_list_get_higher_priority
+.. doxygenfunction:: task_list_is_available
+
+Ready list
+----------------------------------------
+
+.. doxygenfunction:: task_ready_put
+.. doxygenfunction:: task_ready_remove
