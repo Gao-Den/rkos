@@ -1,5 +1,5 @@
 <div style="text-align: left;">
-    <img src="images/rk-logo-social-white.png" width="200"/>
+    <img src="images/rk-logo-social-white.png" width="400"/>
 </div>
 
 RK is a preemptive Real-Time Operating System (RTOS) developed by a Vietnamese engineer for educational and learning purposes.
