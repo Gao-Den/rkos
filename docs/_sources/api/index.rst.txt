@@ -2,7 +2,7 @@ API References
 ========================================
 
 .. toctree::
-   :hidden:
+   :maxdepth: 2
 
    task
    message

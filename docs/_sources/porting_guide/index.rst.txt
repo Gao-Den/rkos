@@ -156,8 +156,8 @@ Following these four steps, RK is successfully ported into your project and read
 --------------------------------------------------
 Example for porting:
 
-- STM32F103C8T6 (Standard Library): https://github.com/Gao-Den/rkos/examples/makefile-project/stm32f103c8t6
-- STM32G431CBU6 (HAL/LL Library): https://github.com/Gao-Den/rkos/examples/makefile-project/stm32g431cbu6
+- STM32G431CBU6 (HAL/LL Library): https://github.com/Gao-Den/rkos/tree/main/examples/makefile-project/stm32g431cbu6
+- STM32F103C8T6 (Standard Library): https://github.com/Gao-Den/rkos/tree/main/examples/makefile-project/stm32f103c8t6
 
 Demonstration:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
