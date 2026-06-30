@@ -6,7 +6,7 @@ RK is a preemptive Real-Time Operating System (RTOS) developed by a Vietnamese e
 
 It combines traditional RTOS kernel architectures with a modern Event-Driven framework to provide a powerful, unified platform for embedded software design
 
-Official Documentation: https://gao-den.github.io/rkos
+**Official Documentation**: https://gao-den.github.io/rkos
 - Fundamentals: Core concepts, scheduling internals, and architectural overviews.
 - API Reference: Detailed function usage, parameters, and system roles.
 - Porting Guide & Examples: Quick-start guides to port RK to your hardware platforms.
