@@ -98,21 +98,59 @@
 recursive locking and priority inheritance to prevent priority inversion.</p>
 <section id="mutex-management">
 <h2>Mutex Management<a class="headerlink" href="#mutex-management" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mutex_init” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410mutex_initP7mutex_t">
+<span id="_CPPv310mutex_initP7mutex_t"></span><span id="_CPPv210mutex_initP7mutex_t"></span><span id="mutex_init__mutex_tP"></span><span class="target" id="mutex_8h_1aceded0e7e1f5e286f2cd89c67441541d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutex_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mutex_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mutex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410mutex_initP7mutex_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a mutex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mutex</strong> – <strong>[in]</strong> pointer to the mutex object (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="mutex-operations">
 <h2>Mutex Operations<a class="headerlink" href="#mutex-operations" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mutex_lock” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mutex_unlock” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410mutex_lockP7mutex_t">
+<span id="_CPPv310mutex_lockP7mutex_t"></span><span id="_CPPv210mutex_lockP7mutex_t"></span><span id="mutex_lock__mutex_tP"></span><span class="target" id="mutex_8h_1adc03a97ab87452373fe9a31b3adcc091"></span><span class="n"><span class="pre">mutex_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutex_lock</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mutex_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mutex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410mutex_lockP7mutex_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Lock a mutex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mutex</strong> – <strong>[in]</strong> pointer to the mutex object (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MUTEX_OK: mutex lock success</p></li>
+<li><p>MUTEX_NG: mutex lock fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412mutex_unlockP7mutex_t">
+<span id="_CPPv312mutex_unlockP7mutex_t"></span><span id="_CPPv212mutex_unlockP7mutex_t"></span><span id="mutex_unlock__mutex_tP"></span><span class="target" id="mutex_8h_1ab752bc10578cb466fdd0e9f8a67ee395"></span><span class="n"><span class="pre">mutex_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mutex_unlock</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mutex_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mutex</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412mutex_unlockP7mutex_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Unlock a mutex. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mutex</strong> – <strong>[in]</strong> pointer to the mutex object (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MUTEX_OK: mutex unlock success</p></li>
+<li><p>MUTEX_NG: mutex unlock fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

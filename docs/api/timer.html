@@ -99,44 +99,154 @@
 periodic processing and asynchronous task notification.</p>
 <section id="timer-service">
 <h2>Timer Service<a class="headerlink" href="#timer-service" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_create” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_start” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_delete” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_change_period” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412timer_createPK7uint8_t8uint64_t12timer_type_tPv11pf_callback">
+<span id="_CPPv312timer_createPK7uint8_t8uint64_t12timer_type_tPv11pf_callback"></span><span id="_CPPv212timer_createPK7uint8_t8uint64_t12timer_type_tPv11pf_callback"></span><span id="timer_create__uint8_tCP.uint64_t.timer_type_t.voidP.pf_callback"></span><span class="target" id="timer_8h_1ad7e634e51c54c5cb4a03bbe249883d20"></span><span class="n"><span class="pre">timer_service_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">timer_create</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">timer_name</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <span class="n"><span class="pre">timer_type_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">message</span></span>, <span class="n"><span class="pre">pf_callback</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">callback</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412timer_createPK7uint8_t8uint64_t12timer_type_tPv11pf_callback" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service create a new timer. </p>
+<p>The created timer will not start automatically, user application must call <a class="reference internal" href="#timer_8h_1a31fc9dac835aa96ed1da149d542d151c"><span class="std std-ref">timer_start()</span></a> to start the timer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timer_name</strong> – <strong>[in]</strong> pointer to the timer name string </p></li>
+<li><p><strong>period</strong> – <strong>[in]</strong> timer period in milliseconds </p></li>
+<li><p><strong>type</strong> – <strong>[in]</strong> timer type (TIMER_ONE_SHOT, TIMER_PERIODIC) </p></li>
+<li><p><strong>message</strong> – <strong>[in]</strong> pointer to the message to be sent when the timer expires </p></li>
+<li><p><strong>callback</strong> – <strong>[in]</strong> timer callback function pointer (MUST-BE not NULL) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the created timer service control block </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411timer_startP15timer_service_t">
+<span id="_CPPv311timer_startP15timer_service_t"></span><span id="_CPPv211timer_startP15timer_service_t"></span><span id="timer_start__timer_service_tP"></span><span class="target" id="timer_8h_1a31fc9dac835aa96ed1da149d542d151c"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_start</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">timer_service_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">timer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411timer_startP15timer_service_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service start the specified timer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> – <strong>[in]</strong> pointer to the timer service control block </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412timer_deleteP15timer_service_t">
+<span id="_CPPv312timer_deleteP15timer_service_t"></span><span id="_CPPv212timer_deleteP15timer_service_t"></span><span id="timer_delete__timer_service_tP"></span><span class="target" id="timer_8h_1ad58de7349472fde1143fa1c18ade0cc3"></span><span class="n"><span class="pre">timer_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_delete</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">timer_service_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">timer</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412timer_deleteP15timer_service_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service delete the specified timer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timer</strong> – <strong>[in]</strong> pointer to the timer service control block </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>TIMER_OK: timer delete success</p></li>
+<li><p>TIMER_NG: timer remove fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419timer_change_periodP15timer_service_t8uint64_t">
+<span id="_CPPv319timer_change_periodP15timer_service_t8uint64_t"></span><span id="_CPPv219timer_change_periodP15timer_service_t8uint64_t"></span><span id="timer_change_period__timer_service_tP.uint64_t"></span><span class="target" id="timer_8h_1a9043b00c0a17ed2c351b01ceb6ba201d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_change_period</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">timer_service_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">timer</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419timer_change_periodP15timer_service_t8uint64_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service change the period of the specified timer. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timer</strong> – <strong>[in]</strong> pointer to the timer service control block </p></li>
+<li><p><strong>period</strong> – <strong>[in]</strong> new timer period in milliseconds </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="kernel-service">
 <h2>Kernel Service<a class="headerlink" href="#kernel-service" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_tick” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_task” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410timer_tick8uint32_t">
+<span id="_CPPv310timer_tick8uint32_t"></span><span id="_CPPv210timer_tick8uint32_t"></span><span id="timer_tick__uint32_t"></span><span class="target" id="timer_8h_1a6f987d7b29a04d1fcc75c83bee71c6e2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_tick</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">tick</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410timer_tick8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service tick. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tick</strong> – <strong>[in]</strong> timer tick heart counter to decrement (unit: milliseconds) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410timer_taskv">
+<span id="_CPPv310timer_taskv"></span><span id="_CPPv210timer_taskv"></span><span id="timer_task"></span><span class="target" id="timer_8h_1a9c1ed82dd9397ef4499969deedf06a05"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_task</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410timer_taskv" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer service task. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="timer-event">
 <h2>Timer Event<a class="headerlink" href="#timer-event" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_set” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “timer_remove” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49timer_set7uint8_t7uint8_t8uint64_t12timer_type_t">
+<span id="_CPPv39timer_set7uint8_t7uint8_t8uint64_t12timer_type_t"></span><span id="_CPPv29timer_set7uint8_t7uint8_t8uint64_t12timer_type_t"></span><span id="timer_set__uint8_t.uint8_t.uint64_t.timer_type_t"></span><span class="target" id="timer_8h_1a436e88a6e3ec9c0cb28ed46dd6831246"></span><span class="n"><span class="pre">timer_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_set</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">period</span></span>, <span class="n"><span class="pre">timer_type_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">type</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49timer_set7uint8_t7uint8_t8uint64_t12timer_type_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer event set signal. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>signal</strong> – <strong>[in]</strong> signal event </p></li>
+<li><p><strong>period</strong> – <strong>[in]</strong> timer period in milliseconds </p></li>
+<li><p><strong>type</strong> – <strong>[in]</strong> timer type (TIMER_ONE_SHOT, TIMER_PERIODIC) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>TIMER_OK: timer set success</p></li>
+<li><p>TIMER_NG: timer set fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412timer_remove7uint8_t7uint8_t">
+<span id="_CPPv312timer_remove7uint8_t7uint8_t"></span><span id="_CPPv212timer_remove7uint8_t7uint8_t"></span><span id="timer_remove__uint8_t.uint8_t"></span><span class="target" id="timer_8h_1ac7de628fa05b87b09f815ea51555448f"></span><span class="n"><span class="pre">timer_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">timer_remove</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412timer_remove7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Timer event remove signal. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>signal</strong> – <strong>[in]</strong> signal event </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>TIMER_OK: timer remove success</p></li>
+<li><p>TIMER_NG: timer remove fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

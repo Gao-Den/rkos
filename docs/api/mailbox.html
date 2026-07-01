@@ -100,32 +100,115 @@ fixed-size FIFO queue. It supports blocking and timeout operations for both
 sending and receiving data.</p>
 <section id="mailbox-management">
 <h2>Mailbox Management<a class="headerlink" href="#mailbox-management" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mailbox_create” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mailbox_delete” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414mailbox_createP9mailbox_t8uint16_t8uint32_t">
+<span id="_CPPv314mailbox_createP9mailbox_t8uint16_t8uint32_t"></span><span id="_CPPv214mailbox_createP9mailbox_t8uint16_t8uint32_t"></span><span id="mailbox_create__mailbox_tP.uint16_t.uint32_t"></span><span class="target" id="mailbox_8h_1a84028b95131e4d4c81a4e90cf578b73d"></span><span class="n"><span class="pre">mailbox_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mailbox_create</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mailbox_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mailbox</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">queue_size</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">element_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414mailbox_createP9mailbox_t8uint16_t8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a mailbox. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mailbox</strong> – <strong>[in]</strong> pointer to the mailbox object (MUST-BE not NULL) </p></li>
+<li><p><strong>queue_size</strong> – <strong>[in]</strong> size of the mailbox queue </p></li>
+<li><p><strong>element_size</strong> – <strong>[in]</strong> size of each element in the mailbox </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MAILBOX_OK: mailbox create success</p></li>
+<li><p>MAILBOX_NG: mailbox create fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414mailbox_deleteP9mailbox_t">
+<span id="_CPPv314mailbox_deleteP9mailbox_t"></span><span id="_CPPv214mailbox_deleteP9mailbox_t"></span><span id="mailbox_delete__mailbox_tP"></span><span class="target" id="mailbox_8h_1ae14c5b635585bac00454120b67b97eb4"></span><span class="n"><span class="pre">mailbox_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mailbox_delete</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mailbox_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mailbox</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414mailbox_deleteP9mailbox_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Delete a mailbox. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mailbox</strong> – <strong>[in]</strong> pointer to the mailbox object (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MAILBOX_OK: mailbox delete success</p></li>
+<li><p>MAILBOX_NG: mailbox delete fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="mailbox-operations">
 <h2>Mailbox Operations<a class="headerlink" href="#mailbox-operations" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mailbox_send” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mailbox_receive” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412mailbox_sendP9mailbox_tPv8uint32_t">
+<span id="_CPPv312mailbox_sendP9mailbox_tPv8uint32_t"></span><span id="_CPPv212mailbox_sendP9mailbox_tPv8uint32_t"></span><span id="mailbox_send__mailbox_tP.voidP.uint32_t"></span><span class="target" id="mailbox_8h_1a92eb6385cd16f0e7378db8591e07ef93"></span><span class="n"><span class="pre">mailbox_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mailbox_send</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mailbox_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mailbox</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">element</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeout_ms</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412mailbox_sendP9mailbox_tPv8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Send a message to the mailbox. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mailbox</strong> – <strong>[in]</strong> pointer to the mailbox object (MUST-BE not NULL) </p></li>
+<li><p><strong>element</strong> – <strong>[in]</strong> pointer to the element to send (MUST-BE not NULL) </p></li>
+<li><p><strong>timeout_ms</strong> – <strong>[in]</strong> timeout in milliseconds for sending (MAILBOX_NULL for no wait, TASK_DELAY_INFINITE for wait indefinitely) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MAILBOX_OK: mailbox send success</p></li>
+<li><p>MAILBOX_NG: mailbox send fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415mailbox_receiveP9mailbox_tPv8uint32_t">
+<span id="_CPPv315mailbox_receiveP9mailbox_tPv8uint32_t"></span><span id="_CPPv215mailbox_receiveP9mailbox_tPv8uint32_t"></span><span id="mailbox_receive__mailbox_tP.voidP.uint32_t"></span><span class="target" id="mailbox_8h_1a529c27166cc816016c4312b6dd76d432"></span><span class="n"><span class="pre">mailbox_status_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mailbox_receive</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">mailbox_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mailbox</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">element</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">timeout_ms</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415mailbox_receiveP9mailbox_tPv8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Receive a message from the mailbox. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mailbox</strong> – <strong>[in]</strong> pointer to the mailbox object (MUST-BE not NULL) </p></li>
+<li><p><strong>element</strong> – <strong>[in]</strong> pointer to the element to receive (MUST-BE not NULL) </p></li>
+<li><p><strong>timeout_ms</strong> – <strong>[in]</strong> timeout in milliseconds for receiving (MAILBOX_NULL for no wait, TASK_DELAY_INFINITE for wait indefinitely) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>MAILBOX_OK: mailbox receive success</p></li>
+<li><p>MAILBOX_NG: mailbox receive fail </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="kernel-service">
 <h2>Kernel Service<a class="headerlink" href="#kernel-service" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “mailbox_tick” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412mailbox_tick8uint32_t">
+<span id="_CPPv312mailbox_tick8uint32_t"></span><span id="_CPPv212mailbox_tick8uint32_t"></span><span id="mailbox_tick__uint32_t"></span><span class="target" id="mailbox_8h_1abff6c10eec24c6383b28c8e000bd6241"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mailbox_tick</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">tick</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412mailbox_tick8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Mailbox tick (Polling) </p>
+<p>This function will be called periodically by the kernel to manage mailbox timeouts and unblock tasks waiting on mailboxes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function will be called by the kernel </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tick</strong> – <strong>[in]</strong> tick count to decrement (unit: milliseconds) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

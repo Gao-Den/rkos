@@ -102,66 +102,198 @@ accessing and releasing pure, common and dynamic messages used for inter-task
 communication.</p>
 <section id="initialization">
 <h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “msg_init” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48msg_initv">
+<span id="_CPPv38msg_initv"></span><span id="_CPPv28msg_initv"></span><span id="msg_init"></span><span class="target" id="message_8h_1a37e492e15c595687b048d2cc29cdf358"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">msg_init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48msg_initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Message initialization (Message pool) </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function will be called by the kernel </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="message-memory-management">
 <h2>Message memory management<a class="headerlink" href="#message-memory-management" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “free_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48free_msgP8rk_msg_t">
+<span id="_CPPv38free_msgP8rk_msg_t"></span><span id="_CPPv28free_msgP8rk_msg_t"></span><span id="free_msg__rk_msg_tP"></span><span class="target" id="message_8h_1ada23a70ed3325912c19977bbf54c5009"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">free_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48free_msgP8rk_msg_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Free a message (Any type of message) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – <strong>[in]</strong> pointer to the message to be freed (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="pure-message">
 <h2>Pure message<a class="headerlink" href="#pure-message" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_pure_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_pure_msg_free” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412get_pure_msgv">
+<span id="_CPPv312get_pure_msgv"></span><span id="_CPPv212get_pure_msgv"></span><span id="get_pure_msg"></span><span class="target" id="message_8h_1a274390fa5669486ce9c1fb7a3dd62c48"></span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_pure_msg</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412get_pure_msgv" title="Link to this definition"></a><br /></dt>
+<dd><p>Take a pure message from the pool. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the allocated pure message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417get_pure_msg_freev">
+<span id="_CPPv317get_pure_msg_freev"></span><span id="_CPPv217get_pure_msg_freev"></span><span id="get_pure_msg_free"></span><span class="target" id="message_8h_1a127ecda5645f4bfca10cc84ccb3a22ec"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_pure_msg_free</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417get_pure_msg_freev" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a available pure message (Message free in the pool) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number of free pure messages in the pool </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="common-message">
 <h2>Common message<a class="headerlink" href="#common-message" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_common_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “set_data_common_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_data_common_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_common_msg_free” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414get_common_msgv">
+<span id="_CPPv314get_common_msgv"></span><span id="_CPPv214get_common_msgv"></span><span id="get_common_msg"></span><span class="target" id="message_8h_1a05b98ba0197f392d91064146bc89eaff"></span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_common_msg</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414get_common_msgv" title="Link to this definition"></a><br /></dt>
+<dd><p>Take a common message from the pool. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the allocated common message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419set_data_common_msgP8rk_msg_tP7uint8_t7uint8_t">
+<span id="_CPPv319set_data_common_msgP8rk_msg_tP7uint8_t7uint8_t"></span><span id="_CPPv219set_data_common_msgP8rk_msg_tP7uint8_t7uint8_t"></span><span id="set_data_common_msg__rk_msg_tP.uint8_tP.uint8_t"></span><span class="target" id="message_8h_1a2535c8a62549aa083eb24e922b6a5def"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_data_common_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419set_data_common_msgP8rk_msg_tP7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Set data for a common message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – <strong>[in]</strong> pointer to the common message (MUST-BE not NULL) </p></li>
+<li><p><strong>data</strong> – <strong>[in]</strong> pointer to the data to be set (MUST-BE not NULL) </p></li>
+<li><p><strong>size</strong> – <strong>[in]</strong> size of the data to be set (MUST-BE less than or equal to RK_COMMON_MSG_DATA_SIZE) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419get_data_common_msgP8rk_msg_t">
+<span id="_CPPv319get_data_common_msgP8rk_msg_t"></span><span id="_CPPv219get_data_common_msgP8rk_msg_t"></span><span id="get_data_common_msg__rk_msg_tP"></span><span class="target" id="message_8h_1a66be3b421482d8fe1b3e3652658f5904"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_data_common_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419get_data_common_msgP8rk_msg_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get data from a common message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – <strong>[in]</strong> pointer to the common message (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the data in the common message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419get_common_msg_freev">
+<span id="_CPPv319get_common_msg_freev"></span><span id="_CPPv219get_common_msg_freev"></span><span id="get_common_msg_free"></span><span class="target" id="message_8h_1a0a708a6f5b93e4adc7cb644ba20d0ee8"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_common_msg_free</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419get_common_msg_freev" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a available common message (Message free in the pool) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number of free common messages in the pool </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="dynamic-message">
 <h2>Dynamic message<a class="headerlink" href="#dynamic-message" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_dynamic_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “set_data_dynamic_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_data_dynamic_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “get_dynamic_msg_free” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415get_dynamic_msgv">
+<span id="_CPPv315get_dynamic_msgv"></span><span id="_CPPv215get_dynamic_msgv"></span><span id="get_dynamic_msg"></span><span class="target" id="message_8h_1a21dddef36999ef2c4a586b98f92404f7"></span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_dynamic_msg</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415get_dynamic_msgv" title="Link to this definition"></a><br /></dt>
+<dd><p>Take a dynamic message from the pool. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the allocated dynamic message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420set_data_dynamic_msgP8rk_msg_tP7uint8_t8uint32_t">
+<span id="_CPPv320set_data_dynamic_msgP8rk_msg_tP7uint8_t8uint32_t"></span><span id="_CPPv220set_data_dynamic_msgP8rk_msg_tP7uint8_t8uint32_t"></span><span id="set_data_dynamic_msg__rk_msg_tP.uint8_tP.uint32_t"></span><span class="target" id="message_8h_1a0394b545811458b71402493055654abc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_data_dynamic_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420set_data_dynamic_msgP8rk_msg_tP7uint8_t8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Set data for a dynamic message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> – <strong>[in]</strong> pointer to the dynamic message (MUST-BE not NULL) </p></li>
+<li><p><strong>data</strong> – <strong>[in]</strong> pointer to the data to be set (MUST-BE not NULL) </p></li>
+<li><p><strong>size</strong> – <strong>[in]</strong> size of the data to be set </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420get_data_dynamic_msgP8rk_msg_t">
+<span id="_CPPv320get_data_dynamic_msgP8rk_msg_t"></span><span id="_CPPv220get_data_dynamic_msgP8rk_msg_t"></span><span id="get_data_dynamic_msg__rk_msg_tP"></span><span class="target" id="message_8h_1ac3114d2f953f9bddc8d9a3ce535acfa2"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">get_data_dynamic_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420get_data_dynamic_msgP8rk_msg_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Get data from a dynamic message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – <strong>[in]</strong> pointer to the dynamic message (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the data in the dynamic message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420get_dynamic_msg_freev">
+<span id="_CPPv320get_dynamic_msg_freev"></span><span id="_CPPv220get_dynamic_msg_freev"></span><span id="get_dynamic_msg_free"></span><span class="target" id="message_8h_1a002fcdbe4371b6da1b17bd704405497b"></span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_dynamic_msg_free</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420get_dynamic_msg_freev" title="Link to this definition"></a><br /></dt>
+<dd><p>Get a available dynamic message (Message free in the pool) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>number of free dynamic messages in the pool </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

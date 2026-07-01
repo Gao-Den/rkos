@@ -100,28 +100,77 @@ and user applications. It also provides heap usage statistics for debugging and
 memory analysis.</p>
 <section id="initialization">
 <h2>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “heap_init” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49heap_initv">
+<span id="_CPPv39heap_initv"></span><span id="_CPPv29heap_initv"></span><span id="heap_init"></span><span class="target" id="heap_8h_1a4b5e2a8ec0b6ac33e17ab8fe3820894e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">heap_init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49heap_initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Heap memory initialization. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function will be called by the kernel </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="memory-management">
 <h2>Memory Management<a class="headerlink" href="#memory-management" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “heap_malloc” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “heap_free” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411heap_malloc6size_t">
+<span id="_CPPv311heap_malloc6size_t"></span><span id="_CPPv211heap_malloc6size_t"></span><span id="heap_malloc__s"></span><span class="target" id="heap_8h_1a92159f1480786579e7298d31d37d6ca4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">heap_malloc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411heap_malloc6size_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Heap memory allocation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>size</strong> – <strong>[in]</strong> size of memory to allocate </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p>pointer to allocated memory (allocated successfully)</p></li>
+<li><p>NULL if memory allocation fails </p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49heap_freePv">
+<span id="_CPPv39heap_freePv"></span><span id="_CPPv29heap_freePv"></span><span id="heap_free__voidP"></span><span class="target" id="heap_8h_1a010c331f7838f50d3df0a0e018a164e0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">heap_free</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">addr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49heap_freePv" title="Link to this definition"></a><br /></dt>
+<dd><p>Heap memory free. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>addr</strong> – <strong>[in]</strong> pointer to memory to free (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="heap-information">
 <h2>Heap Information<a class="headerlink" href="#heap-information" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “heap_info” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49heap_infov">
+<span id="_CPPv39heap_infov"></span><span id="_CPPv29heap_infov"></span><span id="heap_info"></span><span class="target" id="heap_8h_1a90d1fe07c041822e5fd7a1dfaf6f407e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">heap_info</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49heap_infov" title="Link to this definition"></a><br /></dt>
+<dd><p>Heap usage information. </p>
+<p>This function prints the current status of the heap, including total size, used size, free size, and fragmentation level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 

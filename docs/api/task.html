@@ -101,130 +101,489 @@
 communication services.</p>
 <section id="task-management">
 <h2>Task management<a class="headerlink" href="#task-management" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412task_os_initv">
+<span id="_CPPv312task_os_initv"></span><span id="_CPPv212task_os_initv"></span><span id="task_os_init"></span><span class="target" id="task_8h_1a9eeba0747dc0bb57a8461fab95f668c7"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_init</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412task_os_initv" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize the task management system: Memory pool, Message package, Heap system, Timer service. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MUST-BE called before any other task os function </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414task_os_create7uint8_t7pf_task7uint8_t8uint32_tPv8uint16_tPK7uint8_t">
+<span id="_CPPv314task_os_create7uint8_t7pf_task7uint8_t8uint32_tPv8uint16_tPK7uint8_t"></span><span id="_CPPv214task_os_create7uint8_t7pf_task7uint8_t8uint32_tPv8uint16_tPK7uint8_t"></span><span id="task_os_create__uint8_t.pf_task.uint8_t.uint32_t.voidP.uint16_t.uint8_tCP"></span><span class="target" id="task_8h_1acf36f1b2f53480b24e76e20a223c24f5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_create</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span>, <span class="n"><span class="pre">pf_task</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_handler</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_priority</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_stack_size</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">mailbox</span></span>, <span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">mailbox_size</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">task_name</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414task_os_create7uint8_t7pf_task7uint8_t8uint32_tPv8uint16_tPK7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Create a single task. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MUST-BE called after task_os_init and before task_os_run </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task_id</strong> – <strong>[in]</strong> task id (MUST-BE unique and less than TASK_POOL_MAX_SIZE) </p></li>
+<li><p><strong>task_handler</strong> – <strong>[in]</strong> task handler function pointer </p></li>
+<li><p><strong>task_priority</strong> – <strong>[in]</strong> task priority (reference task_priority_t) </p></li>
+<li><p><strong>task_stack_size</strong> – <strong>[in]</strong> task stack size (unit: uint32_t, MUST-BE greater than 0) </p></li>
+<li><p><strong>mailbox</strong> – <strong>[in]</strong> pointer to the mailbox object (set MAILBOX_NULL if the task does not require a mailbox) </p></li>
+<li><p><strong>mailbox_size</strong> – <strong>[in]</strong> mailbox size (set the value to 0 if the task does not require a mailbox) </p></li>
+<li><p><strong>task_name</strong> – <strong>[in]</strong> pointer to the task name string </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420task_os_create_tableP6task_t">
+<span id="_CPPv320task_os_create_tableP6task_t"></span><span id="_CPPv220task_os_create_tableP6task_t"></span><span id="task_os_create_table__task_tP"></span><span class="target" id="task_8h_1ad8e311e7c69a42b87f2c873fde33cff5"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_create_table</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">table</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420task_os_create_tableP6task_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Create tasks based on the provided task table (by user application) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>table</strong> – <strong>[in]</strong> pointer to the task table </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414task_os_delete7uint8_t">
+<span id="_CPPv314task_os_delete7uint8_t"></span><span id="_CPPv214task_os_delete7uint8_t"></span><span id="task_os_delete__uint8_t"></span><span class="target" id="task_8h_1ab03189db9efaf37ecca7eab167079686"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_delete</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414task_os_delete7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Delete the specified task. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> – <strong>[in]</strong> task id to be deleted </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415task_os_suspend7uint8_t">
+<span id="_CPPv315task_os_suspend7uint8_t"></span><span id="_CPPv215task_os_suspend7uint8_t"></span><span id="task_os_suspend__uint8_t"></span><span class="target" id="task_8h_1adb069b3dd863a3fa783f97183943083f"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_suspend</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415task_os_suspend7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Suspend the specified task. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> – <strong>[in]</strong> task id to be suspended </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414task_os_resume7uint8_t">
+<span id="_CPPv314task_os_resume7uint8_t"></span><span id="_CPPv214task_os_resume7uint8_t"></span><span id="task_os_resume__uint8_t"></span><span class="target" id="task_8h_1af61922a0f75f83fad04ad8babcab15a6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_resume</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414task_os_resume7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Resume the specified task. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> – <strong>[in]</strong> task id to be resumed </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411task_os_runv">
+<span id="_CPPv311task_os_runv"></span><span id="_CPPv211task_os_runv"></span><span id="task_os_run"></span><span class="target" id="task_8h_1a2b872bf3a50d8b362226b7b20ae2ea35"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_run</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411task_os_runv" title="Link to this definition"></a><br /></dt>
+<dd><p>Start the os scheduler. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MUST-BE called after task_os_init and task_os_create </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412task_os_tick8uint32_t">
+<span id="_CPPv312task_os_tick8uint32_t"></span><span id="_CPPv212task_os_tick8uint32_t"></span><span id="task_os_tick__uint32_t"></span><span class="target" id="task_8h_1a2e061e0e4140e3d38033e48da1039473"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_tick</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">tick</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412task_os_tick8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task os tick (System os tick base) </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MUST-BE called in systick interrupt, timer interrupt, … </p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tick</strong> – tick heart (unit: milliseconds) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417task_os_schedulerv">
+<span id="_CPPv317task_os_schedulerv"></span><span id="_CPPv217task_os_schedulerv"></span><span id="task_os_scheduler"></span><span class="target" id="task_8h_1a8f6a9bf9f7d69f977b120c8480aca63d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_scheduler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417task_os_schedulerv" title="Link to this definition"></a><br /></dt>
+<dd><p>Task scheduling based on the ready task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_init” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_create” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_create_table” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_delete” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_suspend” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_resume” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_run” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_tick” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_scheduler” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_pendsv_handler” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422task_os_pendsv_handlerv">
+<span id="_CPPv322task_os_pendsv_handlerv"></span><span id="_CPPv222task_os_pendsv_handlerv"></span><span id="task_os_pendsv_handler"></span><span class="target" id="task_8h_1abf7a56e49d11384079316440d2c48495"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_pendsv_handler</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="pre">__attribute__((naked))</span><a class="headerlink" href="#_CPPv422task_os_pendsv_handlerv" title="Link to this definition"></a><br /></dt>
+<dd><p>Task context switching service. </p>
+<p>User porting this function need to know: Initialize and trigger pendsv concept</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="task-message-transport">
 <h2>Task message transport<a class="headerlink" href="#task-message-transport" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_post” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_post_pure_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_post_common_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_post_dynamic_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_receive_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_free_msg” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49task_post7uint8_tP8rk_msg_t">
+<span id="_CPPv39task_post7uint8_tP8rk_msg_t"></span><span id="_CPPv29task_post7uint8_tP8rk_msg_t"></span><span id="task_post__uint8_t.rk_msg_tP"></span><span class="target" id="task_8h_1a34ac2bba930eee6a6a3ac43ebe33c167"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_post</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span>, <span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49task_post7uint8_tP8rk_msg_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task post a message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>msg</strong> – <strong>[in]</strong> pointer to the message to be sent (MUST-BE not NULL) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418task_post_pure_msg7uint8_t7uint8_t">
+<span id="_CPPv318task_post_pure_msg7uint8_t7uint8_t"></span><span id="_CPPv218task_post_pure_msg7uint8_t7uint8_t"></span><span id="task_post_pure_msg__uint8_t.uint8_t"></span><span class="target" id="task_8h_1a00ea2d014258748c291e188764ba6354"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_post_pure_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">des_task_id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418task_post_pure_msg7uint8_t7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task post a pure message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>des_task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>signal</strong> – <strong>[in]</strong> message execution signal </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv420task_post_common_msg7uint8_t7uint8_tP7uint8_t8uint32_t">
+<span id="_CPPv320task_post_common_msg7uint8_t7uint8_tP7uint8_t8uint32_t"></span><span id="_CPPv220task_post_common_msg7uint8_t7uint8_tP7uint8_t8uint32_t"></span><span id="task_post_common_msg__uint8_t.uint8_t.uint8_tP.uint32_t"></span><span class="target" id="task_8h_1a528c6d1df61375075dd2770153e077e6"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_post_common_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">des_task_id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv420task_post_common_msg7uint8_t7uint8_tP7uint8_t8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task post a common message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>des_task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>signal</strong> – <strong>[in]</strong> message execution signal </p></li>
+<li><p><strong>data</strong> – <strong>[in]</strong> pointer to the data to be sent (MUST-BE not NULL) </p></li>
+<li><p><strong>size</strong> – <strong>[in]</strong> size of the data to be sent (unit: byte, MUST-BE less than or equal to RK_COMMON_MSG_DATA_SIZE) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv421task_post_dynamic_msg7uint8_t7uint8_tP7uint8_t8uint32_t">
+<span id="_CPPv321task_post_dynamic_msg7uint8_t7uint8_tP7uint8_t8uint32_t"></span><span id="_CPPv221task_post_dynamic_msg7uint8_t7uint8_tP7uint8_t8uint32_t"></span><span id="task_post_dynamic_msg__uint8_t.uint8_t.uint8_tP.uint32_t"></span><span class="target" id="task_8h_1ad7c4f43437e4b361f1c974bf0d03dcb2"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_post_dynamic_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">des_task_id</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">signal</span></span>, <span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">data</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv421task_post_dynamic_msg7uint8_t7uint8_tP7uint8_t8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task post a dynamic message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>des_task_id</strong> – <strong>[in]</strong> destination task id </p></li>
+<li><p><strong>signal</strong> – <strong>[in]</strong> message execution signal </p></li>
+<li><p><strong>data</strong> – <strong>[in]</strong> pointer to the data to be sent (MUST-BE not NULL) </p></li>
+<li><p><strong>size</strong> – <strong>[in]</strong> size of the data to be sent (unit: byte) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416task_receive_msg7uint8_t">
+<span id="_CPPv316task_receive_msg7uint8_t"></span><span id="_CPPv216task_receive_msg7uint8_t"></span><span id="task_receive_msg__uint8_t"></span><span class="target" id="task_8h_1a4e61e100ddcb553333cc2afc6837b70e"></span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">task_receive_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">task_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416task_receive_msg7uint8_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task receive the message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>task_id</strong> – <strong>[in]</strong> task id to receive message </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the received message </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413task_free_msgP8rk_msg_t">
+<span id="_CPPv313task_free_msgP8rk_msg_t"></span><span id="_CPPv213task_free_msgP8rk_msg_t"></span><span id="task_free_msg__rk_msg_tP"></span><span class="target" id="task_8h_1a0f635c5eefec0f734aac1f3997d8e548"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_free_msg</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">rk_msg_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">msg</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413task_free_msgP8rk_msg_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Task free the message. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>msg</strong> – <strong>[in]</strong> pointer to the message to be freed (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="task-information">
 <h2>Task information<a class="headerlink" href="#task-information" title="Link to this heading"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_info” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49task_infov">
+<span id="_CPPv39task_infov"></span><span id="_CPPv29task_infov"></span><span id="task_info"></span><span class="target" id="task_8h_1a11c0c8b1f9a88e7daf3fca729cffa0da"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_info</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49task_infov" title="Link to this definition"></a><br /></dt>
+<dd><p>Show information about all tasks in the system (id, priority, stack size, stack used, name) </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv423task_os_get_current_tcbv">
+<span id="_CPPv323task_os_get_current_tcbv"></span><span id="_CPPv223task_os_get_current_tcbv"></span><span id="task_os_get_current_tcb"></span><span class="target" id="task_8h_1a15bb978018c39103db94fc36ca3375e2"></span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">task_os_get_current_tcb</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv423task_os_get_current_tcbv" title="Link to this definition"></a><br /></dt>
+<dd><p>Get current task control block active at the time the function is called. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>none</strong> – <strong>[in]</strong> </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the current task control block </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413task_os_delay8uint32_t">
+<span id="_CPPv313task_os_delay8uint32_t"></span><span id="_CPPv213task_os_delay8uint32_t"></span><span id="task_os_delay__uint32_t"></span><span class="target" id="task_8h_1ac2c3619db6fbf1ba5c023186e3de6c90"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_os_delay</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">ms</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413task_os_delay8uint32_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Block the current task for the specified number of milliseconds, allowing other tasks to run during the delay period. </p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>MUST-BE called in task handler, user application MUST-NOT call this function in interrupt handler </p>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_get_current_tcb” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_os_delay” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
-</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ms</strong> – <strong>[in]</strong> delay time in milliseconds </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="task-list">
 <h2>Task list<a class="headerlink" href="#task-list" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414task_list_initP11task_list_t">
+<span id="_CPPv314task_list_initP11task_list_t"></span><span id="_CPPv214task_list_initP11task_list_t"></span><span id="task_list_init__task_list_tP"></span><span class="target" id="task_8h_1a40d464b1a91114b3b853b22362a6071d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_list_init</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414task_list_initP11task_list_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Initialize a task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_init” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list to be initialized (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413task_list_putP11task_list_tP5tcb_t">
+<span id="_CPPv313task_list_putP11task_list_tP5tcb_t"></span><span id="_CPPv213task_list_putP11task_list_tP5tcb_t"></span><span id="task_list_put__task_list_tP.tcb_tP"></span><span class="target" id="task_8h_1aa38776789fa03b6960045fb751c17cd3"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_list_put</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span>, <span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tcb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413task_list_putP11task_list_tP5tcb_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Put the specified task control block to the end of the given task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_put” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p></li>
+<li><p><strong>tcb</strong> – <strong>[in]</strong> pointer to the task control block to be added (MUST-BE not NULL) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416task_list_removeP11task_list_tP5tcb_t">
+<span id="_CPPv316task_list_removeP11task_list_tP5tcb_t"></span><span id="_CPPv216task_list_removeP11task_list_tP5tcb_t"></span><span id="task_list_remove__task_list_tP.tcb_tP"></span><span class="target" id="task_8h_1a465fa1e2186e55e42f07d2ff0526301d"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_list_remove</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span>, <span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tcb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416task_list_removeP11task_list_tP5tcb_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Remove the specified task control block from the given task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_remove” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p></li>
+<li><p><strong>tcb</strong> – <strong>[in]</strong> pointer to the task control block to be removed (MUST-BE not NULL) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv413task_list_getP11task_list_t">
+<span id="_CPPv313task_list_getP11task_list_t"></span><span id="_CPPv213task_list_getP11task_list_t"></span><span id="task_list_get__task_list_tP"></span><span class="target" id="task_8h_1a83cb2177d23e707a8b35b619299501c0"></span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">task_list_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv413task_list_getP11task_list_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Remove and return the head task control block from the given task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_get” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the task control block of the head task list. If the list is empty, it will return NULL </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418task_list_get_headP11task_list_t">
+<span id="_CPPv318task_list_get_headP11task_list_t"></span><span id="_CPPv218task_list_get_headP11task_list_t"></span><span id="task_list_get_head__task_list_tP"></span><span class="target" id="task_8h_1a54e11dbb9f50073b0f14358ad467a0b5"></span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">task_list_get_head</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418task_list_get_headP11task_list_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Return the head task control block from the given task list without removing it. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_get_head” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the task control block of the head task (not removed from the list). If the list is empty, it will return NULL </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv429task_list_get_higher_priorityP11task_list_t">
+<span id="_CPPv329task_list_get_higher_priorityP11task_list_t"></span><span id="_CPPv229task_list_get_higher_priorityP11task_list_t"></span><span id="task_list_get_higher_priority__task_list_tP"></span><span class="target" id="task_8h_1ab2c5c2843fbf4597db41676b377f5024"></span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">task_list_get_higher_priority</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv429task_list_get_higher_priorityP11task_list_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Remove and return the highest priority task control block from the given task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_get_higher_priority” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>pointer to the task control block of the highest priority task (removed from the list). If the list is empty, it will return NULL </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv422task_list_is_availableP11task_list_t">
+<span id="_CPPv322task_list_is_availableP11task_list_t"></span><span id="_CPPv222task_list_is_availableP11task_list_t"></span><span id="task_list_is_available__task_list_tP"></span><span class="target" id="task_8h_1a32f4fb1ff2ee4a025f43c27a705723d6"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_list_is_available</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">task_list_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv422task_list_is_availableP11task_list_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Check the availability of the given task list. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_list_is_available” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>list</strong> – <strong>[in]</strong> pointer to the task list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>TRUE if the list contain task, FALSE if the list is empty </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="ready-list">
 <h2>Ready list<a class="headerlink" href="#ready-list" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414task_ready_putP5tcb_t">
+<span id="_CPPv314task_ready_putP5tcb_t"></span><span id="_CPPv214task_ready_putP5tcb_t"></span><span id="task_ready_put__tcb_tP"></span><span class="target" id="task_8h_1a4b00d01b63e14464f43b3740ec5779c4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_ready_put</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tcb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414task_ready_putP5tcb_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Put the specified task control block to the ready list based on its priority. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_ready_put” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tcb</strong> – <strong>[in]</strong> pointer to the task control block to be put in the ready list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417task_ready_removeP5tcb_t">
+<span id="_CPPv317task_ready_removeP5tcb_t"></span><span id="_CPPv217task_ready_removeP5tcb_t"></span><span id="task_ready_remove__tcb_tP"></span><span class="target" id="task_8h_1a12d216f776b424d1cd3540e25d5e43e0"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">task_ready_remove</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">tcb_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n sig-param"><span class="pre">tcb</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417task_ready_removeP5tcb_t" title="Link to this definition"></a><br /></dt>
+<dd><p>Remove the specified task control block from the ready list based on its priority. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>doxygenfunction: Cannot find function “task_ready_remove” in doxygen xml output for project “rkos” from directory: ../doxygen_output/xml</p>
+<p>kernel private (should not be called by user applications directly) </p>
 </div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tcb</strong> – <strong>[in]</strong> pointer to the task control block to be removed from the ready list (MUST-BE not NULL) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>none </p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
