@@ -245,7 +245,7 @@ extern void task_free_msg(rk_msg_t* msg);
  * @param[in] none
  * @return none
  */
-extern void task_info();
+extern void task_os_info();
 
 /**
  * @brief Get current task control block active at the time the function is called

@@ -521,7 +521,7 @@ void task_os_init() {
     OS_EXIT_CRITICAL();
 
     /* task os default */
-    task_os_create(TIMER_TASK_ID, timer_task, TASK_PRIORITY_7, 1024, MAILBOX_NULL, 0, (const uint8_t*)"timer_service");
+    task_os_create(TIMER_TASK_ID, timer_task, TASK_PRIORITY_7, TIMER_TASK_STACK_SIZE, MAILBOX_NULL, 0, (const uint8_t*)"timer_service");
     task_os_create(0xFE, task_os_idle, TASK_PRIORITY_0, 512, MAILBOX_NULL, 0, (const uint8_t*)"task_os_idle");
 
     /* rk banner */
@@ -1129,7 +1129,7 @@ void task_free_msg(rk_msg_t* msg) {
  * @param[in] none
  * @return none
  */
-void task_info() {
+void task_os_info() {
     OS_ENTRY_CRITICAL();
 
     tcb_t* p_tcb = task_link;
