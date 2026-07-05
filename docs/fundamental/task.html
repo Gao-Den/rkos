@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -136,8 +136,7 @@
 <li><p>No additional RAM overhead</p></li>
 <li><p>No complex task management mechanism required</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/super-loop.svg"><img alt="../_images/super-loop.svg" src="../_images/super-loop.svg" style="width: 40%;" />
-</a>
+<img alt="RK Example Supper Loop" class="img-40" src="../_images/super-loop.svg" />
 <p>However, as the system grows larger, several issues begin to surface.
 Subsequent tasks must wait entirely for the preceding task to finish executing. This leads to:</p>
 <ul class="simple">
@@ -185,8 +184,7 @@ For example:</p>
 <h2>Context Switching Concept<a class="headerlink" href="#context-switching-concept" title="Link to this heading"></a></h2>
 <p>To transition the CPU from one task to another, an RTOS utilizes a mechanism called Context Switching. Since only one task can run at any given moment, this operation is commonly referred to as <strong>multitasking virtualization</strong>.</p>
 <p>The context represents the entire state of the CPU at the exact moment the task is executing.</p>
-<a class="reference internal image-reference" href="../_images/context-switch.svg"><img alt="../_images/context-switch.svg" class="align-center" src="../_images/context-switch.svg" style="width: 80%;" />
-</a>
+<img alt="RK Task Context Switching Concept" class="img-80 align-center" src="../_images/context-switch.svg" />
 <p>When the RTOS decides to switch from the currently running task to another task, the process unfolds as follows:</p>
 <ul class="simple">
 <li><p><strong>Step 1</strong>: Save the entire execution state of the currently running task into its own private memory (typically that task’s stack).</p></li>
@@ -198,8 +196,7 @@ For example:</p>
 <h2>Task priority<a class="headerlink" href="#task-priority" title="Link to this heading"></a></h2>
 <section id="task-states">
 <h3>Task states<a class="headerlink" href="#task-states" title="Link to this heading"></a></h3>
-<a class="reference internal image-reference" href="../_images/task-states.svg"><img alt="../_images/task-states.svg" src="../_images/task-states.svg" style="width: 40%;" />
-</a>
+<img alt="RK Task States" class="img-40" src="../_images/task-states.svg" />
 <p>Above are the 4 states of a task:</p>
 <ul class="simple">
 <li><p><strong>Running</strong>: The task is currently executing.</p></li>
@@ -216,8 +213,7 @@ For example:</p>
 <li><p><strong>Round-Robin</strong>: Rotational context switching.</p></li>
 </ul>
 <p>RK utilizes a bitmask mechanism to rapidly determine the highest priority task that is eligible to run next.</p>
-<a class="reference internal image-reference" href="../_images/task-priority-based.svg"><img alt="../_images/task-priority-based.svg" src="../_images/task-priority-based.svg" style="width: 50%;" />
-</a>
+<img alt="RK Task Priority Based" class="img-50" src="../_images/task-priority-based.svg" />
 <p>As illustrated above, each priority level is associated with a corresponding task queue for that specific priority. This queue is structured using a singly linked list.</p>
 <p>The scheduling operation proceeds as follows:</p>
 <ul class="simple">
@@ -228,8 +224,7 @@ For example:</p>
 </section>
 <section id="round-robin">
 <h3>Round-robin<a class="headerlink" href="#round-robin" title="Link to this heading"></a></h3>
-<a class="reference internal image-reference" href="../_images/task-round-robin.svg"><img alt="../_images/task-round-robin.svg" src="../_images/task-round-robin.svg" style="width: 50%;" />
-</a>
+<img alt="RK Task Round Robin" class="img-50" src="../_images/task-round-robin.svg" />
 <p>Within the same priority level of a task list, tasks will rotate their execution based on the time slices of the RTOS tick (Heartbeat tick).</p>
 </section>
 </section>

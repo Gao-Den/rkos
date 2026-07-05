@@ -15,7 +15,8 @@ This model provides several key benefits:
 The Event-Driven model in RK is heavily based on the concepts of the **Active Object** model (https://www.state-machine.com/active-object).
 
 .. image:: images/event/actve-object.svg
-   :width: 30%
+   :class: img-30
+   :alt: RK Active Object
 
 Each task (thread) possesses its own dedicated storage space for its local events, states, and data—remaining completely isolated and independent from other tasks in the system.
 
@@ -36,7 +37,8 @@ Bare-metal Project
 In a pure super loop system, it is entirely possible to implement an event-driven architecture as follows:
 
 .. image:: images/event/event-driven-bare.svg
-   :width: 50%
+   :class: img-50
+   :alt: RK Event Driven Bare Metal
 
 All messages are centrally aggregated and stored in a shared global **Event Queue**. The centralized **Event Loop** continuously extracts messages from this queue and dispatches them to the target task. Each destination task then processes the event based on the specific event ID it has been assigned.
 
@@ -46,7 +48,8 @@ RTOS
 Within an RTOS environment, the Event-Driven architecture still adheres to the core concepts mentioned above:
 
 .. image:: images/event/event-driven-rtos.svg
-   :width: 55%
+   :class: img-55
+   :alt: RK Event Driven RTOS
 
 However, the key distinction lies in isolation: each task maintains its own independent Event Queue and Event Loop.
 

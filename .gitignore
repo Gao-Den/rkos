@@ -12,3 +12,6 @@ documentation
 
 # Makefile (auto-docs)
 Makefile
+
+# ignore example build
+examples/makefile-project/stm32g431cbu6/build/

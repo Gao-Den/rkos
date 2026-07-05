@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -95,8 +95,7 @@
   <section id="mailbox">
 <h1>Mailbox<a class="headerlink" href="#mailbox" title="Link to this heading"></a></h1>
 <p>A Mailbox is a mechanism that allows tasks to send and receive messages to and from one another. Through a mailbox, tasks can exchange data without directly accessing each other’s memory space.</p>
-<a class="reference internal image-reference" href="../_images/mailbox.svg"><img alt="../_images/mailbox.svg" src="../_images/mailbox.svg" style="width: 40%;" />
-</a>
+<img alt="RK Mailbox" class="img-40" src="../_images/mailbox.svg" />
 <p>A message can represent:</p>
 <ul class="simple">
 <li><p>Sensor data</p></li>
@@ -116,8 +115,7 @@ To reduce CPU overhead and ensure data synchronization, RK implements a mailbox 
 <section id="sending-wait">
 <h3>Sending Wait<a class="headerlink" href="#sending-wait" title="Link to this heading"></a></h3>
 <p>A sending wait occurs when a task intends to push a message into a mailbox, but that mailbox is full.</p>
-<a class="reference internal image-reference" href="../_images/mailbox-send-block-task.svg"><img alt="../_images/mailbox-send-block-task.svg" src="../_images/mailbox-send-block-task.svg" style="width: 21%;" />
-</a>
+<img alt="RK Mailbox Send Block Task" class="img-20" src="../_images/mailbox-send-block-task.svg" />
 <p>When this scenario occurs, the task is transitioned into a waiting state and appended to the mailbox’s send-wait list. The task will not be allocated CPU time until either:</p>
 <ul class="simple">
 <li><p>Another task reads a message from the mailbox, thereby freeing up a slot.</p></li>
@@ -125,19 +123,16 @@ To reduce CPU overhead and ensure data synchronization, RK implements a mailbox 
 </ul>
 <p>Once a slot becomes available in the mailbox, the RK’s scheduler wakes up one or more tasks from the send-wait list to resume their message-sending operation. This mechanism effectively prevents data loss when the transmission rate exceeds the processing/reception rate.</p>
 <p>When multiple tasks simultaneously attempt to post messages into a full mailbox, they are appended to a queue of waiting tasks—a mechanism very similar to standing in line to order food.</p>
-<a class="reference internal image-reference" href="../_images/mailbox-send-block-list.svg"><img alt="../_images/mailbox-send-block-list.svg" src="../_images/mailbox-send-block-list.svg" style="width: 50%;" />
-</a>
+<img alt="RK Mailbox Send Block Task List" class="img-50" src="../_images/mailbox-send-block-list.svg" />
 <p>As soon as space opens up in the mailbox, the system allows the “most handsome guy” (the task with the highest priority) to proceed with sending its message first.</p>
 </section>
 <section id="receiving-wait">
 <h3>Receiving Wait<a class="headerlink" href="#receiving-wait" title="Link to this heading"></a></h3>
 <p>A receiving wait occurs when a task attempts to retrieve a message from a mailbox, but the mailbox is currently empty.</p>
-<a class="reference internal image-reference" href="../_images/mailbox-revc-block-task.svg"><img alt="../_images/mailbox-revc-block-task.svg" src="../_images/mailbox-revc-block-task.svg" style="width: 21%;" />
-</a>
+<img alt="RK Mailbox Receive Block Task" class="img-20" src="../_images/mailbox-revc-block-task.svg" />
 <p>In this scenario, the task relinquishes its CPU usage and enters a blocked state. The Scheduler then reallocates CPU time to other tasks that are currently in the ready state. The task is only awakened when a new message arrives or when the timeout expires. This mechanism eliminates the need for continuous mailbox polling inside loops—a practice that wastes CPU resources and degrades overall system performance.</p>
 <p>Similarly, if multiple tasks are attempting to receive a message but the mailbox is empty, the RTOS will aggregate and block these tasks, placing them into a waiting list. As soon as a message arrives, it will be delivered to the task with the highest priority in that receive-wait list first.</p>
-<a class="reference internal image-reference" href="../_images/mailbox-revc-block-list.svg"><img alt="../_images/mailbox-revc-block-list.svg" src="../_images/mailbox-revc-block-list.svg" style="width: 50%;" />
-</a>
+<img alt="RK Mailbox Receive Block Task List" class="img-50" src="../_images/mailbox-revc-block-list.svg" />
 <p>Thanks to this mechanism, data can be processed almost instantaneously upon arriving at the mailbox.</p>
 </section>
 </section>

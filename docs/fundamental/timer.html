@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -95,8 +95,7 @@
              
   <section id="timer">
 <h1>Timer<a class="headerlink" href="#timer" title="Link to this heading"></a></h1>
-<a class="reference internal image-reference" href="../_images/timer.svg"><img alt="../_images/timer.svg" src="../_images/timer.svg" style="width: 15%;" />
-</a>
+<img alt="RK Timer" class="img-15" src="../_images/timer.svg" />
 <p>A Timer is a critical component in any software system. In an RTOS, timers are commonly used to execute time-based operations such as:</p>
 <ul class="simple">
 <li><p>Periodically reading sensors.</p></li>
@@ -114,8 +113,7 @@
 </ul>
 <section id="timer-service">
 <h2>Timer Service<a class="headerlink" href="#timer-service" title="Link to this heading"></a></h2>
-<a class="reference internal image-reference" href="../_images/timer-service.svg"><img alt="../_images/timer-service.svg" src="../_images/timer-service.svg" style="width: 55%;" />
-</a>
+<img alt="RK Timer Service" class="img-55" src="../_images/timer-service.svg" />
 <p>The timer service allows you to register a callback function that will be executed when the timer expires. When initializing a timer, the user must provide: Timer name, timer type, timeout duration, and the callback function.</p>
 <p>RK will then begin tracking the time for that specific timer. Once the timer expires, the registered callback is invoked.</p>
 <p>RK supports two types of Timers:</p>
@@ -126,8 +124,7 @@
 </section>
 <section id="timer-event">
 <h2>Timer Event<a class="headerlink" href="#timer-event" title="Link to this heading"></a></h2>
-<a class="reference internal image-reference" href="../_images/timer-event.svg"><img alt="../_images/timer-event.svg" src="../_images/timer-event.svg" style="width: 55%;" />
-</a>
+<img alt="RK Timer Event" class="img-55" src="../_images/timer-event.svg" />
 <p>While timer callbacks are a ubiquitous mechanism in RTOS development, there are many scenarios where an Event-Driven application does not need to execute a callback function directly.</p>
 <p>Instead, the application simply requires an event to be dispatched to the corresponding task upon timer expiration. To address this need, RK introduces the Timer Event Service.</p>
 <p>A Timer Event is a unified synergy of three concepts: Timer, Mailbox &amp; Event Post</p>

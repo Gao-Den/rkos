@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -125,17 +125,37 @@
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdlib.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
 
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sys_ctrl.h&quot;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sys_irq.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;sys.h&quot;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;xprintf.h&quot;</span>
 
-<span class="cp">#define port_entry_critical()               ENTRY_CRITICAL()</span>
-<span class="cp">#define port_exit_critical()                EXIT_CRITICAL()</span>
+<span class="cm">/* port critical section */</span>
+<span class="cp">#define port_entry_critical()                   ENTRY_CRITICAL()</span>
+<span class="cp">#define port_exit_critical()                    EXIT_CRITICAL()</span>
 
-<span class="cp">#define port_os_printf(fmt, ...)            xprintf(fmt, ##__VA_ARGS__)</span>
-<span class="cp">#define port_os_pendsv_trigger()            pendsv_trigger()</span>
+<span class="cm">/* port console print */</span>
+<span class="cp">#define port_os_printf(fmt, ...)                xprintf(fmt, ##__VA_ARGS__)</span>
 
-<span class="cp">#define port_fatal_error(c, m)              SYS_FATAL(c, m)</span>
+<span class="cm">/* port pending service trigger interrupt */</span>
+<span class="cp">#define port_os_pendsv_trigger()                pendsv_trigger()</span>
+
+<span class="cm">/* port fatal error log */</span>
+<span class="cp">#define port_fatal_error(c, m)                  SYS_FATAL(c, m)</span>
+
+<span class="cm">/* port kernel task pool */</span>
+<span class="cp">#define PORT_TASK_POOL_MAX_SIZE                 (8)</span>
+
+<span class="cm">/* port message pool memory */</span>
+<span class="cp">#define PORT_PURE_MSG_POOL_SIZE                 (4)</span>
+<span class="cp">#define PORT_COMMON_MSG_POOL_SIZE               (4)</span>
+<span class="cp">#define PORT_DYNAMIC_MSG_POOL_SIZE              (4)</span>
+
+<span class="cm">/* port timer service */</span>
+<span class="cp">#define PORT_TIMER_TASK_STACK_SIZE              (256) </span><span class="cm">/* word */</span>
+<span class="cp">#define PORT_TIMER_TASK_QUEUE_MAX_SIZE          (4)</span>
+<span class="cp">#define PORT_TIMER_EVENT_POOL_MAX_SIZE          (8)</span>
+
+<span class="cm">/* port heap memory */</span>
+<span class="cp">#define PORT_HEAP_BUFFER_MAX_SIZE               (8 * 1024) </span><span class="cm">/* 8KB */</span>
 
 <span class="cp">#ifdef __cplusplus</span>
 <span class="p">}</span>
@@ -175,11 +195,30 @@
 </section>
 <section id="pendsv">
 <h3>PendSV<a class="headerlink" href="#pendsv" title="Link to this heading"></a></h3>
-<p>Inside the PendSV interrupt service routine, invoke the RK Context Switch handler.</p>
+<p>Place the <em>task_os_pendsv_handler()</em> function (located in <em>task.h</em>) into the nested vectored interrupt controller (NVIC) vector table.</p>
 <p>Example code:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="nf">pendsv_handler</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">task_os_pendsv_handler</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* interrupt vector table */</span>
+<span class="n">__attribute__</span><span class="p">((</span><span class="n">section</span><span class="p">(</span><span class="s">&quot;.isr_vector&quot;</span><span class="p">)))</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="k">const</span><span class="w"> </span><span class="n">g_pfnVectors</span><span class="p">[])(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* system interrupt */</span>
+<span class="w">    </span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">))</span><span class="o">&amp;</span><span class="n">_estack</span><span class="p">,</span><span class="w">                        </span><span class="cm">/* stack pointer */</span>
+<span class="w">    </span><span class="n">reset_handler</span><span class="p">,</span><span class="w">                                   </span><span class="cm">/* reset handler */</span>
+<span class="w">    </span><span class="n">nmi_handler</span><span class="p">,</span><span class="w">                                     </span><span class="cm">/* nmi handler */</span>
+<span class="w">    </span><span class="n">hardfault_handler</span><span class="p">,</span><span class="w">                               </span><span class="cm">/* hard fault handler */</span>
+<span class="w">    </span><span class="n">mem_manage_handler</span><span class="p">,</span><span class="w">                              </span><span class="cm">/* mem manage handler */</span>
+<span class="w">    </span><span class="n">bus_fault_handler</span><span class="p">,</span><span class="w">                               </span><span class="cm">/* bus fault handler */</span>
+<span class="w">    </span><span class="n">usage_fault_handler</span><span class="p">,</span><span class="w">                             </span><span class="cm">/* usage fault handler */</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w">                                               </span><span class="cm">/* reserved */</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w">                                               </span><span class="cm">/* reserved */</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w">                                               </span><span class="cm">/* reserved */</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w">                                               </span><span class="cm">/* reserved */</span>
+<span class="w">    </span><span class="n">svc_handler</span><span class="p">,</span><span class="w">                                     </span><span class="cm">/* svc handler */</span>
+<span class="w">    </span><span class="n">debug_mon_handler</span><span class="p">,</span><span class="w">                               </span><span class="cm">/* debug monitor handler */</span>
+<span class="w">    </span><span class="mi">0</span><span class="p">,</span><span class="w">                                               </span><span class="cm">/* reserved */</span>
+<span class="w">    </span><span class="n">task_os_pendsv_handler</span><span class="p">,</span><span class="w">                          </span><span class="cm">/* pend sv handler */</span>
+<span class="w">    </span><span class="n">system_tick_handler</span><span class="p">,</span>
+
+<span class="w">    </span><span class="cm">/* peripheral interrupts */</span>
+<span class="w">    </span><span class="p">...</span>
 </pre></div>
 </div>
 </section>

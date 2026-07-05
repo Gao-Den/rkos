@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -105,8 +105,7 @@
 <li><p>Improves the responsiveness of the application.</p></li>
 </ul>
 <p>The Event-Driven model in RK is heavily based on the concepts of the <strong>Active Object</strong> model (<a class="reference external" href="https://www.state-machine.com/active-object">https://www.state-machine.com/active-object</a>).</p>
-<a class="reference internal image-reference" href="../_images/actve-object.svg"><img alt="../_images/actve-object.svg" src="../_images/actve-object.svg" style="width: 30%;" />
-</a>
+<img alt="RK Active Object" class="img-30" src="../_images/actve-object.svg" />
 <p>Each task (thread) possesses its own dedicated storage space for its local events, states, and data—remaining completely isolated and independent from other tasks in the system.</p>
 <p>The Event-Driven system in RK is a unified synergy of three core components:</p>
 <ul class="simple">
@@ -122,15 +121,13 @@
 <section id="bare-metal-project">
 <h2>Bare-metal Project<a class="headerlink" href="#bare-metal-project" title="Link to this heading"></a></h2>
 <p>In a pure super loop system, it is entirely possible to implement an event-driven architecture as follows:</p>
-<a class="reference internal image-reference" href="../_images/event-driven-bare.svg"><img alt="../_images/event-driven-bare.svg" src="../_images/event-driven-bare.svg" style="width: 50%;" />
-</a>
+<img alt="RK Event Driven Bare Metal" class="img-50" src="../_images/event-driven-bare.svg" />
 <p>All messages are centrally aggregated and stored in a shared global <strong>Event Queue</strong>. The centralized <strong>Event Loop</strong> continuously extracts messages from this queue and dispatches them to the target task. Each destination task then processes the event based on the specific event ID it has been assigned.</p>
 </section>
 <section id="rtos">
 <h2>RTOS<a class="headerlink" href="#rtos" title="Link to this heading"></a></h2>
 <p>Within an RTOS environment, the Event-Driven architecture still adheres to the core concepts mentioned above:</p>
-<a class="reference internal image-reference" href="../_images/event-driven-rtos.svg"><img alt="../_images/event-driven-rtos.svg" src="../_images/event-driven-rtos.svg" style="width: 55%;" />
-</a>
+<img alt="RK Event Driven RTOS" class="img-55" src="../_images/event-driven-rtos.svg" />
 <p>However, the key distinction lies in isolation: each task maintains its own independent Event Queue and Event Loop.</p>
 <p>Every single object (Queue, Event Loop, Message) is instantiated and managed within the dedicated, isolated memory space allocated to that specific task.</p>
 </section>

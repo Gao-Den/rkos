@@ -7,7 +7,8 @@ In inter-task communication, messages play a crucial role as the data exchanged 
 Furthermore, users can still create their own custom message types depending on the specific needs of their application.
 
 .. image:: images/message/types-of-message.svg
-   :width: 80%
+   :class: img-80
+   :alt: RK Types Of Message
 
 There are 3 different types of messages:
 
@@ -20,7 +21,8 @@ Message Pool
 A Message Pool is a mechanism used to organize and store messages throughout their lifecycle. In a literal sense, a pool acts exactly as a "reservoir" or a shared tank of resources.
 
 .. image:: images/message/pool-memory.svg
-   :width: 45%
+   :class: img-50
+   :alt: RK Memory Pool
 
 Initially, these message types are statically allocated based on a fixed number of messages configured by the user. When a message is needed (i.e., a task requests to fetch a message), the message pool manager allocates an element from this data pool and hands it over to the user.
 Once the task finishes processing, the user must return this message back to the pool.

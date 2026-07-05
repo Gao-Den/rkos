@@ -28,10 +28,10 @@ Task message transport
 .. doxygenfunction:: task_receive_msg
 .. doxygenfunction:: task_free_msg
 
-Task information
+Task ultilities
 ----------------------------------------
 
-.. doxygenfunction:: task_info
+.. doxygenfunction:: task_os_info
 .. doxygenfunction:: task_os_get_current_tcb
 .. doxygenfunction:: task_os_delay
 

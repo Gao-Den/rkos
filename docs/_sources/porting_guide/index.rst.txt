@@ -38,17 +38,37 @@ Create a **rk_port.h** file with the following template content:
     #include <stdlib.h>
     #include <string.h>
 
-    #include "sys_ctrl.h"
-    #include "sys_irq.h"
+    #include "sys.h"
     #include "xprintf.h"
 
-    #define port_entry_critical()               ENTRY_CRITICAL()
-    #define port_exit_critical()                EXIT_CRITICAL()
+    /* port critical section */
+    #define port_entry_critical()                   ENTRY_CRITICAL()
+    #define port_exit_critical()                    EXIT_CRITICAL()
 
-    #define port_os_printf(fmt, ...)            xprintf(fmt, ##__VA_ARGS__)
-    #define port_os_pendsv_trigger()            pendsv_trigger()
+    /* port console print */
+    #define port_os_printf(fmt, ...)                xprintf(fmt, ##__VA_ARGS__)
 
-    #define port_fatal_error(c, m)              SYS_FATAL(c, m)
+    /* port pending service trigger interrupt */
+    #define port_os_pendsv_trigger()                pendsv_trigger()
+
+    /* port fatal error log */
+    #define port_fatal_error(c, m)                  SYS_FATAL(c, m)
+
+    /* port kernel task pool */
+    #define PORT_TASK_POOL_MAX_SIZE                 (8)
+
+    /* port message pool memory */
+    #define PORT_PURE_MSG_POOL_SIZE                 (4)
+    #define PORT_COMMON_MSG_POOL_SIZE               (4)
+    #define PORT_DYNAMIC_MSG_POOL_SIZE              (4)
+
+    /* port timer service */
+    #define PORT_TIMER_TASK_STACK_SIZE              (256) /* word */
+    #define PORT_TIMER_TASK_QUEUE_MAX_SIZE          (4)
+    #define PORT_TIMER_EVENT_POOL_MAX_SIZE          (8)
+
+    /* port heap memory */
+    #define PORT_HEAP_BUFFER_MAX_SIZE               (8 * 1024) /* 8KB */
 
     #ifdef __cplusplus
     }
@@ -94,16 +114,34 @@ The argument passed into the *task_os_tick(1)* function depends entirely on the 
 PendSV
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Inside the PendSV interrupt service routine, invoke the RK Context Switch handler.
+Place the *task_os_pendsv_handler()* function (located in *task.h*) into the nested vectored interrupt controller (NVIC) vector table.
 
 Example code:
 
 .. code-block:: c
 
-    void pendsv_handler() {
-        task_os_pendsv_handler();
-    }
+    /* interrupt vector table */
+    __attribute__((section(".isr_vector"))) void (*const g_pfnVectors[])(void) = {
+        /* system interrupt */
+        (void (*)(void))&_estack,                        /* stack pointer */
+        reset_handler,                                   /* reset handler */
+        nmi_handler,                                     /* nmi handler */
+        hardfault_handler,                               /* hard fault handler */
+        mem_manage_handler,                              /* mem manage handler */
+        bus_fault_handler,                               /* bus fault handler */
+        usage_fault_handler,                             /* usage fault handler */
+        0,                                               /* reserved */
+        0,                                               /* reserved */
+        0,                                               /* reserved */
+        0,                                               /* reserved */
+        svc_handler,                                     /* svc handler */
+        debug_mon_handler,                               /* debug monitor handler */
+        0,                                               /* reserved */
+        task_os_pendsv_handler,                          /* pend sv handler */
+        system_tick_handler,
 
+        /* peripheral interrupts */
+        ...
 
 4. Initialization and Starting RK
 --------------------------------------------------

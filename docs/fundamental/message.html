@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -99,8 +99,7 @@
 <h2>Types of Messages<a class="headerlink" href="#types-of-messages" title="Link to this heading"></a></h2>
 <p>In inter-task communication, messages play a crucial role as the data exchanged between tasks. In RK, a message is a predefined, custom data type (struct).
 Furthermore, users can still create their own custom message types depending on the specific needs of their application.</p>
-<a class="reference internal image-reference" href="../_images/types-of-message.svg"><img alt="../_images/types-of-message.svg" src="../_images/types-of-message.svg" style="width: 80%;" />
-</a>
+<img alt="RK Types Of Message" class="img-80" src="../_images/types-of-message.svg" />
 <p>There are 3 different types of messages:</p>
 <ul class="simple">
 <li><p><strong>Pure message</strong>: A message type that only contains a Signal (the execution command/event).</p></li>
@@ -111,8 +110,7 @@ Furthermore, users can still create their own custom message types depending on 
 <section id="message-pool">
 <h2>Message Pool<a class="headerlink" href="#message-pool" title="Link to this heading"></a></h2>
 <p>A Message Pool is a mechanism used to organize and store messages throughout their lifecycle. In a literal sense, a pool acts exactly as a “reservoir” or a shared tank of resources.</p>
-<a class="reference internal image-reference" href="../_images/pool-memory.svg"><img alt="../_images/pool-memory.svg" src="../_images/pool-memory.svg" style="width: 45%;" />
-</a>
+<img alt="RK Memory Pool" class="img-50" src="../_images/pool-memory.svg" />
 <p>Initially, these message types are statically allocated based on a fixed number of messages configured by the user. When a message is needed (i.e., a task requests to fetch a message), the message pool manager allocates an element from this data pool and hands it over to the user.
 Once the task finishes processing, the user must return this message back to the pool.</p>
 <p>In RK, the message pool is utilized to structure the event transmission and reception system, which is detailed in the Event section.</p>

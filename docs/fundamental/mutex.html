@@ -10,7 +10,7 @@
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=26683a42" />
+      <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=2f646c67" />
 
   
       <script src="../_static/jquery.js?v=5d32c60e"></script>
@@ -38,7 +38,7 @@
           
           <a href="../index.html" class="icon icon-home">
             RKOS Doucmentation
-              <img src="../_static/rk-logo-social-color-non-bg.png" class="logo" alt="Logo"/>
+              <img src="../_static/rk-logo-social-color.svg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -101,8 +101,7 @@
 <li><p>Hardware resources: UART, SPI, GPIO, etc.</p></li>
 <li><p>Software resources: Files, shared variables, etc.</p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/mutex.svg"><img alt="../_images/mutex.svg" src="../_images/mutex.svg" style="width: 55%;" />
-</a>
+<img alt="RK Mutex" class="img-55" src="../_images/mutex.svg" />
 <p>If multiple tasks access a resource simultaneously without a protective mechanism, data can be overwritten or become inconsistent. A Mutex is utilized to resolve this issue.</p>
 <section id="normal-mutex">
 <h2>Normal Mutex<a class="headerlink" href="#normal-mutex" title="Link to this heading"></a></h2>
@@ -116,8 +115,7 @@
 <section id="priority-inversion">
 <h2>Priority Inversion<a class="headerlink" href="#priority-inversion" title="Link to this heading"></a></h2>
 <p>Although a mutex solves the concurrent access problem, it can introduce another issue known as Priority Inversion.</p>
-<a class="reference internal image-reference" href="../_images/mutex-priority-inversion.svg"><img alt="../_images/mutex-priority-inversion.svg" src="../_images/mutex-priority-inversion.svg" style="width: 50%;" />
-</a>
+<img alt="RK Mutex Priority Inversion" class="img-50" src="../_images/mutex-priority-inversion.svg" />
 <p>For example, consider a system with the following 3 tasks:</p>
 <ul class="simple">
 <li><p>Task H: Priority 5 (High)</p></li>
@@ -136,8 +134,7 @@
 <h2>Priority Inheritance<a class="headerlink" href="#priority-inheritance" title="Link to this heading"></a></h2>
 <p>To resolve priority inversion, an RTOS implements a mechanism called Priority Inheritance.
 When a high-priority task is blocked by a mutex currently owned by a low-priority task, the RTOS temporarily elevates the priority of that low-priority task to match the priority of the high-priority task.</p>
-<a class="reference internal image-reference" href="../_images/mutex-priority-inheritance.svg"><img alt="../_images/mutex-priority-inheritance.svg" src="../_images/mutex-priority-inheritance.svg" style="width: 50%;" />
-</a>
+<img alt="RK Mutex Priority Inheritance" class="img-50" src="../_images/mutex-priority-inheritance.svg" />
 <p>Thanks to priority inheritance:</p>
 <ul class="simple">
 <li><p>The waiting time of the high-priority task is minimized.</p></li>

@@ -2,8 +2,8 @@
 RKOS Documentation
 ########################
 
-.. image:: _static/rk-logo-social-color-non-bg.png
-   :width: 30%
+.. image:: _static/rk-logo-social-color.svg
+   :class: img-30
    :alt: RKOS Logo
 
 Welcome to the official documentation of RK (Realtime Kernel), a real-time operating system (RTOS) for microcontrollers developed by Vietnamese developers.

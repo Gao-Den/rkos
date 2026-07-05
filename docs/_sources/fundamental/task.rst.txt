@@ -45,7 +45,8 @@ For small applications, this method works very efficiently:
 - No complex task management mechanism required
 
 .. image:: images/task/super-loop.svg
-      :width: 40%
+   :class: img-40
+   :alt: RK Example Supper Loop
 
 However, as the system grows larger, several issues begin to surface.
 Subsequent tasks must wait entirely for the preceding task to finish executing. This leads to:
@@ -97,7 +98,8 @@ To transition the CPU from one task to another, an RTOS utilizes a mechanism cal
 The context represents the entire state of the CPU at the exact moment the task is executing.
 
 .. image:: images/task/context-switch.svg
-   :width: 80%
+   :class: img-80
+   :alt: RK Task Context Switching Concept
    :align: center
 
 When the RTOS decides to switch from the currently running task to another task, the process unfolds as follows:
@@ -111,7 +113,8 @@ Task priority
 Task states
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. image:: images/task/task-states.svg
-   :width: 40%
+   :class: img-40
+   :alt: RK Task States
 
 Above are the 4 states of a task:
 
@@ -130,7 +133,8 @@ During the context switching process, the Scheduler decides which task will run 
 RK utilizes a bitmask mechanism to rapidly determine the highest priority task that is eligible to run next.
 
 .. image:: images/task/task-priority-based.svg
-   :width: 50%
+   :class: img-50
+   :alt: RK Task Priority Based
 
 As illustrated above, each priority level is associated with a corresponding task queue for that specific priority. This queue is structured using a singly linked list.
 
@@ -143,6 +147,7 @@ The scheduling operation proceeds as follows:
 Round-robin
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 .. image:: images/task/task-round-robin.svg
-   :width: 50%
+   :class: img-50
+   :alt: RK Task Round Robin
 
 Within the same priority level of a task list, tasks will rotate their execution based on the time slices of the RTOS tick (Heartbeat tick).

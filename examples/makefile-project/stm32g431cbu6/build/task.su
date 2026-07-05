@@ -26,7 +26,7 @@
 ../../../sources/src/task.c:1032:6:task_post	24	static
 ../../../sources/src/task.c:1099:11:task_receive_msg	16	static
 ../../../sources/src/task.c:1119:6:task_free_msg	0	static
-../../../sources/src/task.c:1132:6:task_info	32	static
+../../../sources/src/task.c:1132:6:task_os_info	32	static
 ../../../sources/src/task.c:1168:8:task_os_get_current_tcb	0	static
 ../../../sources/src/task.c:1178:9:task_os_get_current_task_id	16	static
 ../../../sources/src/task.c:1054:6:task_post_pure_msg	16	static

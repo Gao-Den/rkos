@@ -1,8 +1,8 @@
 About
 ========================================
 
-.. image:: _static/rk-logo-social-color-non-bg.png
-   :width: 20%
+.. image:: _static/rk-logo-social-color.svg
+   :class: img-30
    :alt: RKOS Logo
 
 RK is a preemptive RTOS designed to bridge the gap between operating system theory and real-world application. By providing a clean, accessible architecture, it strips away the complexity of traditional kernels to inspire and empower the embedded systems community. 

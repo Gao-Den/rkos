@@ -396,7 +396,7 @@ void pendsv_trigger() {
 }
 
 void pendsv_handler() {
-    task_os_pendsv_handler();
+    /* TODO */
 }
 
 void system_tick_handler() {

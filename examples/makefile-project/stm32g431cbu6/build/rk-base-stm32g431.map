@@ -756,7 +756,7 @@ Discarded input sections
                 0x0000000000000000       0x70 build/task.o
  .text.task_free_msg
                 0x0000000000000000        0x8 build/task.o
- .text.task_info
+ .text.task_os_info
                 0x0000000000000000       0x78 build/task.o
  .text.task_os_get_current_task_id
                 0x0000000000000000       0x20 build/task.o
@@ -1438,7 +1438,7 @@ Linker script and memory map
  .rodata.os_banner.str1.1
                 0x0000000008003c96       0x7a build/task.o
                                          0x7c (size before relaxing)
- .rodata.task_info.str1.1
+ .rodata.task_os_info.str1.1
                 0x0000000008003d10       0x85 build/task.o
  .rodata.task_stack_overflow.str1.1
                 0x0000000008003d95       0x7b build/task.o
@@ -1546,7 +1546,7 @@ Linker script and memory map
  .igot.plt      0x0000000020000014        0x0 build/stm32g4xx_ll_gpio.o
                 0x0000000020000014                . = ALIGN (0x4)
 
-.bss            0x0000000020000018     0x45a0 load address 0x0000000008003ea8
+.bss            0x0000000020000018     0x2540 load address 0x0000000008003ea8
                 0x0000000020000018                _sbss = .
                 0x0000000020000018                __bss_start__ = _sbss
  *(.bss)
@@ -1606,44 +1606,44 @@ Linker script and memory map
                 0x00000000200004a8       0x24 build/timer.o
                 0x00000000200004a8                timer_mailbox
  .bss.timer_node_pool
-                0x00000000200004cc       0xc0 build/timer.o
+                0x00000000200004cc       0x60 build/timer.o
  .bss.timer_pool_free
-                0x000000002000058c        0x4 build/timer.o
+                0x000000002000052c        0x4 build/timer.o
  .bss.timer_tick_irq
-                0x0000000020000590       0x10 build/timer.o
+                0x0000000020000530       0x10 build/timer.o
  .bss.heap_available_size
-                0x00000000200005a0        0x4 build/heap.o
+                0x0000000020000540        0x4 build/heap.o
  .bss.heap_buffer_block_pool
-                0x00000000200005a4     0x4000 build/heap.o
+                0x0000000020000544     0x2000 build/heap.o
  .bss.heap_list_head
-                0x00000000200045a4        0x4 build/heap.o
+                0x0000000020002544        0x4 build/heap.o
  .bss.millis_current
-                0x00000000200045a8        0x4 build/sys.o
-                0x00000000200045a8                millis_current
+                0x0000000020002548        0x4 build/sys.o
+                0x0000000020002548                millis_current
  .bss.nest_entry_critical_counter
-                0x00000000200045ac        0x4 build/sys.o
- .bss.strptr    0x00000000200045b0        0x4 build/xprintf.o
+                0x000000002000254c        0x4 build/sys.o
+ .bss.strptr    0x0000000020002550        0x4 build/xprintf.o
  .bss.xfunc_output
-                0x00000000200045b4        0x4 build/xprintf.o
-                0x00000000200045b4                xfunc_output
+                0x0000000020002554        0x4 build/xprintf.o
+                0x0000000020002554                xfunc_output
  *(COMMON)
-                0x00000000200045b8                . = ALIGN (0x4)
-                0x00000000200045b8                _ebss = .
-                0x00000000200045b8                __bss_end__ = _ebss
+                0x0000000020002558                . = ALIGN (0x4)
+                0x0000000020002558                _ebss = .
+                0x0000000020002558                __bss_end__ = _ebss
 
-.heap           0x00000000200045b8      0x400 load address 0x0000000008003ea8
-                0x00000000200045b8                __heap_start__ = .
-                0x00000000200049b8                . = (. + HEAP_SIZE)
- *fill*         0x00000000200045b8      0x400 
-                0x00000000200049b8                . = ALIGN (0x4)
-                0x00000000200049b8                __heap_end__ = .
+.heap           0x0000000020002558      0x400 load address 0x0000000008003ea8
+                0x0000000020002558                __heap_start__ = .
+                0x0000000020002958                . = (. + HEAP_SIZE)
+ *fill*         0x0000000020002558      0x400 
+                0x0000000020002958                . = ALIGN (0x4)
+                0x0000000020002958                __heap_end__ = .
                 [!provide]                        PROVIDE (end = __heap_end__)
 
-.end_ram        0x00000000200049b8        0x0 load address 0x0000000008003ea8
-                0x00000000200049b8                _end_ram = .
+.end_ram        0x0000000020002958        0x0 load address 0x0000000008003ea8
+                0x0000000020002958                _end_ram = .
 
-.sstack         0x00000000200049b8        0x0 load address 0x0000000008003ea8
-                0x00000000200049b8                _sstack = .
+.sstack         0x0000000020002958        0x0 load address 0x0000000008003ea8
+                0x0000000020002958                _sstack = .
                 0x0000000020008000                _estack = (ORIGIN (RAM) + LENGTH (RAM))
 
 /DISCARD/
@@ -1878,7 +1878,7 @@ LOAD /mnt/d/GaoDen/dev/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eab
  .debug_line    0x0000000000007956      0xa08 build/xprintf.o
  .debug_line    0x000000000000835e      0x520 build/app.o
 
-.debug_str      0x0000000000000000     0x3c9c
+.debug_str      0x0000000000000000     0x3c9f
  .debug_str     0x0000000000000000      0x3a9 build/system_stm32g4xx.o
                                         0x3f3 (size before relaxing)
  .debug_str     0x00000000000003a9      0x1c9 build/stm32g4xx_ll_gpio.o
@@ -1895,23 +1895,23 @@ LOAD /mnt/d/GaoDen/dev/tools/gcc-arm-none-eabi-10.3-2021.10/lib/gcc/arm-none-eab
                                         0x7e4 (size before relaxing)
  .debug_str     0x0000000000002206      0x3b3 build/stm32g4xx_hal_rcc.o
                                         0x831 (size before relaxing)
- .debug_str     0x00000000000025b9      0x7f1 build/task.o
-                                        0xaab (size before relaxing)
- .debug_str     0x0000000000002daa       0xc8 build/mailbox.o
+ .debug_str     0x00000000000025b9      0x7f4 build/task.o
+                                        0xaae (size before relaxing)
+ .debug_str     0x0000000000002dad       0xc8 build/mailbox.o
                                         0x628 (size before relaxing)
- .debug_str     0x0000000000002e72      0x1c3 build/message.o
+ .debug_str     0x0000000000002e75      0x1c3 build/message.o
                                         0x4cc (size before relaxing)
- .debug_str     0x0000000000003035      0x27f build/timer.o
+ .debug_str     0x0000000000003038      0x27f build/timer.o
                                         0x7d6 (size before relaxing)
- .debug_str     0x00000000000032b4      0x132 build/heap.o
+ .debug_str     0x00000000000032b7      0x132 build/heap.o
                                         0x337 (size before relaxing)
- .debug_str     0x00000000000033e6      0x278 build/sys.o
+ .debug_str     0x00000000000033e9      0x278 build/sys.o
                                         0xcfb (size before relaxing)
- .debug_str     0x000000000000365e      0x251 build/io_cfg.o
+ .debug_str     0x0000000000003661      0x251 build/io_cfg.o
                                         0xcd3 (size before relaxing)
- .debug_str     0x00000000000038af      0x140 build/xprintf.o
+ .debug_str     0x00000000000038b2      0x140 build/xprintf.o
                                         0x2e4 (size before relaxing)
- .debug_str     0x00000000000039ef      0x2ad build/app.o
+ .debug_str     0x00000000000039f2      0x2ad build/app.o
                                         0x6e3 (size before relaxing)
 
 .comment        0x0000000000000000       0x49

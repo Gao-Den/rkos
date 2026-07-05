@@ -7,7 +7,8 @@ A Mutex (Mutual Exclusion) is a mechanism that guarantees only one single task i
 - Software resources: Files, shared variables, etc.
 
 .. image:: images/mutex/mutex.svg
-   :width: 55%
+   :class: img-55
+   :alt: RK Mutex
 
 If multiple tasks access a resource simultaneously without a protective mechanism, data can be overwritten or become inconsistent. A Mutex is utilized to resolve this issue.
 
@@ -26,7 +27,8 @@ Priority Inversion
 Although a mutex solves the concurrent access problem, it can introduce another issue known as Priority Inversion.
 
 .. image:: images/mutex/mutex-priority-inversion.svg
-   :width: 50%
+   :class: img-50
+   :alt: RK Mutex Priority Inversion
 
 For example, consider a system with the following 3 tasks:
 
@@ -49,7 +51,8 @@ To resolve priority inversion, an RTOS implements a mechanism called Priority In
 When a high-priority task is blocked by a mutex currently owned by a low-priority task, the RTOS temporarily elevates the priority of that low-priority task to match the priority of the high-priority task.
 
 .. image:: images/mutex/mutex-priority-inheritance.svg
-   :width: 50%
+   :class: img-50
+   :alt: RK Mutex Priority Inheritance
 
 Thanks to priority inheritance:
 
