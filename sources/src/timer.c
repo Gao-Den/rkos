@@ -430,6 +430,48 @@ timer_status_t timer_remove(uint8_t task_id, uint8_t signal) {
 }
 
 /**
+ * @brief Timer event remove node
+ * @param[in] task_id destination task id
+ * @param[in] signal signal event
+ * @return 
+ *          - TIMER_OK: timer remove success
+ *          - TIMER_NG: timer remove fail
+ */
+timer_status_t timer_remove_event_node(uint8_t task_id, uint8_t signal) {
+    OS_ENTRY_CRITICAL();
+    timer_event_t* current_node = timer_event_list;
+    timer_event_t* previous_node = TIMER_EVENT_NULL;
+    OS_EXIT_CRITICAL();
+
+    while (current_node != TIMER_EVENT_NULL) {
+        if ((current_node->des_task_id == task_id) && (current_node->signal == signal)) {
+            OS_ENTRY_CRITICAL();
+
+            if (current_node == timer_event_list) {
+                timer_event_list = current_node->next;
+            } 
+            else {
+                previous_node->next = current_node->next;
+            }
+
+            OS_EXIT_CRITICAL();
+
+            /* timer delete event node */
+            timer_event_pool_free(current_node);
+
+            return TIMER_OK;
+        }
+
+        OS_ENTRY_CRITICAL();
+        previous_node = current_node;
+        current_node = current_node->next;
+        OS_EXIT_CRITICAL();
+    }
+
+    return TIMER_NG;
+}
+
+/**
  * @brief Timer event callback
  * @param[in] timer pointer to the timer service control block of the timer event
  */
@@ -451,7 +493,7 @@ void timer_event_callback(void* timer) {
 
     /* timer list update */
     if (timer_event->timer_os->timer_type == TIMER_ONE_SHOT) {
-        timer_event_pool_free(timer_event);
+        timer_remove_event_node(timer_event->des_task_id, timer_event->signal);
     }
 
     OS_EXIT_CRITICAL();
