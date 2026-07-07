@@ -1014,7 +1014,7 @@ void task_os_delay_tick(uint32_t tick) {
         }
         else {
             if (p_tcb->delay_counter != TASK_DELAY_INFINITE) {
-                p_tcb->delay_counter--;
+                p_tcb->delay_counter -= tick;
             }
         }
 
