@@ -11,7 +11,7 @@ Doxyfile
 documentation
 
 # Makefile (auto-docs)
-Makefile
+/Makefile
 
 # ignore example build
 examples/makefile-project/stm32g431cbu6/build/
