@@ -974,7 +974,7 @@ void task_os_delay(uint32_t ms) {
 
     tcb->delay_counter = ms;
 
-    if (tcb == TCB_NULL) {
+    if ((tcb == TCB_NULL) || (ms == 0)) {
         OS_EXIT_CRITICAL();
         return;
     }
