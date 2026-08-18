@@ -1,4 +1,4 @@
-Fundametal
+Fundamental
 ==================================================
 
 The **Fundamental** section introduces the core concepts of RK and RTOS, covering the task model, scheduling mechanisms, inter-task communication, synchronization, time management, and memory management.
