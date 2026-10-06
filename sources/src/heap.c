@@ -98,7 +98,7 @@ void* heap_malloc(size_t size) {
             size_t remaining = p_block->size - HEAP_BLOCK_HEADER_SIZE - size;
 
             if (remaining < HEAP_BLOCK_HEADER_SIZE) {
-                EXIT_CRITICAL();
+                OS_EXIT_CRITICAL();
                 OS_FATAL("HEAP", 0x03);
             }
 
